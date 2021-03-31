@@ -1,0 +1,27 @@
+{
+  "name": "Dungeon_Game",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "parcel src/index.html -p 8000",
+    "build": "parcel build src/index.html --out-dir dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "phaser": "^3.50.1"
+  },
+  "devDependencies": {
+    "parcel-plugin-clean-easy": "^1.0.2",
+    "parcel-plugin-static-files-copy": "^2.5.0",
+    "typescript": "^4.1.3"
+  },
+  "staticFiles": {
+    "staticPath": "public",
+    "watcherGlob": "**"
+  },
+  "parcelCleanPaths": [
+    "dist"
+  ]
+}
