@@ -54,16 +54,16 @@ export default class Test_Dungeon extends Phaser.Scene
     {   
 
         //Instantiate sprites
-        this.hero = new Hero(this, 500, 100, 'hero');
+        this.hero = new Hero(this, 300, 100, 'hero');
 
         this.enemies = [
-        this.bat = new Bat(this, 100, 100, 'bat'),
-        this.spider = new Spider(this, 100, 100, 'spider'),
-        this.goblin = new Goblin(this, 200, 200, 'goblin'),
-        this.archer = new Archer(this, 200, 200, 'archer'),
-        this.orc = new Orc(this, 300, 300, 'orc'),
-        this.troll = new Troll(this, 400, 100, 'troll'),
-        this.slime = new Slime(this, 100, 100, 'slime'),
+        // this.bat = new Bat(this, 100, 100, 'bat'),
+        // this.spider = new Spider(this, 100, 100, 'spider'),
+        // this.goblin = new Goblin(this, 200, 200, 'goblin'),
+        // this.archer = new Archer(this, 200, 200, 'archer'),
+        // this.orc = new Orc(this, 300, 300, 'orc'),
+        // this.troll = new Troll(this, 400, 100, 'troll'),
+        // this.slime = new Slime(this, 100, 100, 'slime'),
         this.rat = new Rat(this, 200, 200, 'rat')
         ]
 
@@ -77,6 +77,7 @@ export default class Test_Dungeon extends Phaser.Scene
 
         const floorLayer = map.createLayer('Floor', tileset, 0, 0);
         const fringeLayer = map.createLayer('Fringe', tileset, 0, 0);
+        
 
         //Add sprites to scenes
         this.add.existing(this.hero);

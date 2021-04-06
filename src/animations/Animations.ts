@@ -729,11 +729,7 @@ const createRatAnims = (anims: Phaser.Animations.AnimationManager) =>
         frames:[
             {
                 key: 'rat_flipped',
-                frame: 'frame-6-0.png',
-            },
-            {
-                key: 'rat_flipped',
-                frame: 'frame-6-1.png',
+                frame: 'frame-6-3.png',
             },
             {
                 key: 'rat_flipped',
@@ -741,7 +737,11 @@ const createRatAnims = (anims: Phaser.Animations.AnimationManager) =>
             },
             {
                 key: 'rat_flipped',
-                frame: 'frame-6-3.png',
+                frame: 'frame-6-1.png',
+            },
+            {
+                key: 'rat_flipped',
+                frame: 'frame-6-0.png',
             }],
         repeat: -1,
         frameRate: 10,        

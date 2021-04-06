@@ -158,41 +158,49 @@ export default class Rat extends Phaser.Physics.Arcade.Sprite
 
         switch(this.currentState){
             case Current_State.UP:
+                this.body.setOffset(15, 12)
                 this.setVelocity(0, -this.vel);
                 this.anims.play('rat-run-up', true);
                 break;
 
             case Current_State.DOWN:
+                this.body.setOffset(15, 12)
                 this.setVelocity(0, this.vel);
                 this.anims.play('rat-run-down', true);
                 break;
 
             case Current_State.LEFT:
+                this.body.setOffset(15, 12)
                 this.setVelocity(-this.vel, 0);
                 this.anims.play('rat-run-left', true);
                 break;
 
             case Current_State.RIGHT:
+                this.body.setOffset(15, 12)
                 this.setVelocity(this.vel, 0);
                 this.anims.play('rat-run-right', true);
                 break;
 
             case Current_State.ATTACKING_UP:
+                this.body.setOffset(15, 2)
                 this.setVelocity(0, -this.vel);
                 this.anims.play('rat-attack-up', true);
                 break;
 
             case Current_State.ATTACKING_DOWN:
+                this.body.setOffset(15, 15)
                 this.setVelocity(0, this.vel);
                 this.anims.play('rat-attack-down', true);
                 break;
 
             case Current_State.ATTACKING_LEFT:
+                this.body.setOffset(8, 10)
                 this.setVelocity(-this.vel, 0);
                 this.anims.play('rat-attack-left', true);
                 break;
 
             case Current_State.ATTACKING_RIGHT:
+                this.body.setOffset(20, 10)
                 this.setVelocity(this.vel, 0);
                 this.anims.play('rat-attack-right', true);
                 break;

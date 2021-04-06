@@ -123,21 +123,25 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite
 
         switch(this.currentState){
             case Current_State.UP:
+                this.setOffset(15, 13);
                 this.setVelocity(0, -this.vel);
                 this.anims.play('slime-run-up', true);
                 break;
 
             case Current_State.DOWN:
+                this.setOffset(15, 18);
                 this.setVelocity(0, this.vel);
                 this.anims.play('slime-run-down', true);
                 break;
 
             case Current_State.LEFT:
+                this.setOffset(10, 15);
                 this.setVelocity(-this.vel, 0);
                 this.anims.play('slime-run-left', true);
                 break;
 
             case Current_State.RIGHT:
+                this.setOffset(20, 15);
                 this.setVelocity(this.vel, 0);
                 this.anims.play('slime-run-right', true);
                 break;
