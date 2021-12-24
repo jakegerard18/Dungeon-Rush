@@ -1,9 +1,7 @@
 import Phaser from 'phaser';
 import Preloader from './scenes/Preloader';
-import {spriteDecomposer} from './utils/spriteDecomposer';
+import { spriteDecomposer } from './utils/spriteDecomposer';
 import Test_Dungeon from './scenes/TestDungeon'
-import Dungeon01 from './scenes/Dungeon01';
-import Dungeon02 from './scenes/Dungeon02';
 
 //console.log(spriteDecomposer('troll_flipped.png', 192, 538, 48, 11, 4));
 
@@ -14,19 +12,19 @@ export const game = new Phaser.Game({
 	physics: {
 		default: 'arcade',
 		arcade: {
-			gravity: {y: 0},
+			gravity: { y: 0 },
 			debug: false
-		}	
+		}
 	},
-	fps:{
+	fps: {
 		min: 30,
 		target: 60,
 	},
-	scene: [Preloader, Test_Dungeon, Dungeon01, Dungeon02],
+	scene: [Preloader, Test_Dungeon],
 	scale: {
 		zoom: 2
 	}
-	
+
 
 });
 

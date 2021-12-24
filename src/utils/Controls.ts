@@ -1,6 +1,6 @@
 import Phaser from 'phaser'
 
-export default class Controls extends Object
+export default class Controls
 {
     UP: Phaser.Input.Keyboard.Key;
     DOWN: Phaser.Input.Keyboard.Key;
@@ -16,7 +16,6 @@ export default class Controls extends Object
     constructor(scene: Phaser.Scene, up: string, down: string, left: string,right: string,key5?: string,
         key6?: string, key7?: string, key8?: string, key9?: string, key10?: string)
         {
-            super()
             this.UP = scene.input.keyboard.addKey(up),
             this.DOWN = scene.input.keyboard.addKey(down),
             this.LEFT = scene.input.keyboard.addKey(left),
