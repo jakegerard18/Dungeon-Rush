@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+<map version="1.2" tiledversion="1.3.2" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="16" height="16" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
  <tileset firstgid="1" name="dungeon_tileset" tilewidth="16" tileheight="16" tilecount="480" columns="20">
-  <image source="../../../../Sprites and Tiles/rpg-dungeon-pack v1.1(wonderdot)/tiles_dungeon_v1.png" width="320" height="384"/>
+  <image source="tiles_dungeon_v1.png" width="320" height="384"/>
  </tileset>
  <layer id="1" name="layer" width="16" height="16">
   <data encoding="csv">

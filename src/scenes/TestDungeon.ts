@@ -54,7 +54,7 @@ export default class Test_Dungeon extends Phaser.Scene {
     this.hero = new Hero(this, 300, 100, 'hero');
 
     this.enemies = [
-      // this.bat = new Bat(this, 100, 100, 'bat'),
+      this.bat = new Bat(this, 100, 100, 'bat'),
       this.spider = new Spider(this, 100, 100, 'spider'),
         // this.goblin = new Goblin(this, 200, 200, 'goblin'),
         // this.archer = new Archer(this, 200, 200, 'archer'),

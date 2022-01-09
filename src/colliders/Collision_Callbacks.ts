@@ -2,7 +2,6 @@ import Phaser from 'phaser'
 import Hero from '../characters/Hero'
 import Slime from '../characters/Slime'
 import Rat from '../characters/Rat'
-import Dungeon01 from '../scenes/Dungeon01'
 import Test_Dungeon from '../scenes/TestDungeon'
 import {game} from '../main'
 
