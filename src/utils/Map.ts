@@ -1,4 +1,5 @@
 import Phaser from 'phaser'
+import Hero from '../characters/Hero'
 
 enum Directions
 {
@@ -19,7 +20,7 @@ export default class Map
     this.rooms_json = rooms_json;
   }
 
-  generateMap() {
+  generateMap(hero: Hero) {
     this.rooms_json.forEach((room_json) => {
       let room = this.scene.make.tilemap({ key: room_json });
       this.rooms.push(room);
@@ -29,7 +30,8 @@ export default class Map
     var y = 0;
     this.rooms.forEach((room) => {
       let tileset = room.addTilesetImage('dungeon_tileset', 'tiles', 16, 16, 1, 2);
-      const layer = room.createLayer('layer', tileset, x, y);
+      room.createLayer('Floor', tileset, x, y);
+      const layer = room.createLayer('Walls', tileset, x, y);
       layer.setCollisionByProperty({collides: true});
 
       switch(this.randomDirection()) {
@@ -49,7 +51,11 @@ export default class Map
           x -= 256;
           break;
       }
+
+      this.scene.physics.add.collider(hero, layer)
     })
+
+    
   }
 
   randomDirection() {
