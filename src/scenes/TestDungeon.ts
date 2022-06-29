@@ -27,7 +27,6 @@ export default class Test_Dungeon extends Phaser.Scene {
     startText = this.add.text(W/2, H/2, 'Click to Start', { fontSize: '32px', fill: '#FFF' });
     startText.x -= startText.width / 2;
 
-    this.input.on('pointerdown', start, this);
   }
 
 

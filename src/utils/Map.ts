@@ -1,4 +1,14 @@
 import Phaser from 'phaser'
+import Hero from '../characters/Hero'
+
+enum Directions
+{
+    NORTH,
+    EAST,
+    SOUTH,
+    WEST
+}
+
 export default class Map
 var cellw = 50;
 var cellh = 44;
@@ -173,14 +183,6 @@ function visit(scene, i)
 
     var neighbours = ncount(i);
 
-    if (neighbours > 1)
-        return false;
-
-    if (floorplanCount >= maxrooms)
-        return false;
-
-    if(Math.random() < 0.5 && i != 45)
-        return false;
 
     cellQueue.push(i);
     floorplan[i] = 1;
