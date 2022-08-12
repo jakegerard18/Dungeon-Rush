@@ -31,7 +31,7 @@ function preload ()
     if(window.baseUrl)
         this.load.setBaseURL(baseUrl);
 
-    this.load.image('cell', 'assets/Floor.png');
+    this.load.image('cell', 'cell.png');
 }
 
 function create ()
