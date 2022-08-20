@@ -1,5 +1,5 @@
-var cellw = 160;
-var cellh = 160;
+var cellw = 256;
+var cellh = 256;
 var W = 1600;
 var H = 1000;
 var startText;
@@ -31,7 +31,7 @@ function preload ()
     if(window.baseUrl)
         this.load.setBaseURL(baseUrl);
 
-    this.load.image('cell', 'cell.png');
+    this.load.image('cell', 'assets/dungeons/test_dungeon.png');
 }
 
 function create ()
