@@ -9,7 +9,7 @@ var floorplan;
 var floorplanCount;
 var cellQueue;
 var endrooms;
-var maxrooms = 100;
+var maxrooms = 10;
 var minrooms = 7;
 
 var config = {
@@ -31,7 +31,21 @@ function preload ()
     if(window.baseUrl)
         this.load.setBaseURL(baseUrl);
 
-    this.load.image('cell', 'assets/dungeons/test_dungeon.png');
+    this.load.image('NSEW', 'assets/dungeons/nsew_dungeon.png');
+    this.load.image('NSE', 'assets/dungeons/nes_dungeon.png');
+    this.load.image('NSW', 'assets/dungeons/nws_dungeon.png');
+    this.load.image('NEW', 'assets/dungeons/new_dungeon.png');
+    this.load.image('SEW', 'assets/dungeons/sew_dungeon.png');
+    this.load.image('NE', 'assets/dungeons/ne_dungeon.png');
+    this.load.image('NW', 'assets/dungeons/nw_dungeon.png');
+    this.load.image('NS', 'assets/dungeons/ns_dungeon.png');
+    this.load.image('SE', 'assets/dungeons/se_dungeon.png');
+    this.load.image('SW', 'assets/dungeons/sw_dungeon.png');
+    this.load.image('EW', 'assets/dungeons/ew_dungeon.png');
+    this.load.image('N', 'assets/dungeons/n_dungeon.png');
+    this.load.image('S', 'assets/dungeons/s_dungeon.png');
+    this.load.image('E', 'assets/dungeons/e_dungeon.png');
+    this.load.image('W', 'assets/dungeons/w_dungeon.png');
 }
 
 function create ()
@@ -47,7 +61,7 @@ function create ()
     });
     images = [];
     floorplan = [];
-    for(var i =0;i<=100;i++) floorplan[i] = 0;
+    for(var i =0; i<=100; i++) floorplan[i] = 0;
     floorplanCount = 0;
     cellQueue = [];
     endrooms = [];
@@ -70,6 +84,7 @@ function update()
                 endrooms.push(i);
             }
         }
+        apply_dungeon_maps(this, floorplan)
     }
 }
 
@@ -92,14 +107,36 @@ function visit(scene, i)
     cellQueue.push(i);
     floorplan[i] = 1;
     floorplanCount += 1;
-
-    img(scene, i, 'cell')
     return true;
 }
 
 function ncount(i)
 {
     return floorplan[i-10] + floorplan[i-1] + floorplan[i+1] + floorplan[i+10];
+}
+
+function apply_dungeon_maps(scene, floorplan) {
+    for (var i = 0; i < floorplan.length; i++)
+    {
+        if (floorplan[i] == 1) {
+            var map = check_neighbors(i)
+            img(scene, i, map)
+        }
+    }
+}
+
+function check_neighbors(cell) {
+    var neighbors = []
+    if (floorplan[cell-10])
+        neighbors += 'N';
+    if (floorplan[cell+10])
+        neighbors += 'S';
+    if (floorplan[cell+1])
+        neighbors += 'E';
+    if (floorplan[cell-1])
+        neighbors += 'W';
+    
+    return neighbors.toString()
 }
 
 function img(scene, i, name)
