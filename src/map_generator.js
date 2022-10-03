@@ -1,3 +1,5 @@
+import Phaser from 'phaser'
+
 var cellw = 256;
 var cellh = 256;
 var W = 1600;
@@ -16,7 +18,6 @@ var config = {
     type: Phaser.AUTO,
     width: W,
     height: H,
-    parent: 'isaac_gen',
     scene: {
         preload: preload,
         create: create,
@@ -31,21 +32,21 @@ function preload ()
     if(window.baseUrl)
         this.load.setBaseURL(baseUrl);
 
-    this.load.image('NSEW', 'assets/dungeons/nsew_dungeon.png');
-    this.load.image('NSE', 'assets/dungeons/nes_dungeon.png');
-    this.load.image('NSW', 'assets/dungeons/nws_dungeon.png');
-    this.load.image('NEW', 'assets/dungeons/new_dungeon.png');
-    this.load.image('SEW', 'assets/dungeons/sew_dungeon.png');
-    this.load.image('NE', 'assets/dungeons/ne_dungeon.png');
-    this.load.image('NW', 'assets/dungeons/nw_dungeon.png');
-    this.load.image('NS', 'assets/dungeons/ns_dungeon.png');
-    this.load.image('SE', 'assets/dungeons/se_dungeon.png');
-    this.load.image('SW', 'assets/dungeons/sw_dungeon.png');
-    this.load.image('EW', 'assets/dungeons/ew_dungeon.png');
-    this.load.image('N', 'assets/dungeons/n_dungeon.png');
-    this.load.image('S', 'assets/dungeons/s_dungeon.png');
-    this.load.image('E', 'assets/dungeons/e_dungeon.png');
-    this.load.image('W', 'assets/dungeons/w_dungeon.png');
+    this.load.image('NSEW', 'dungeons/nsew_dungeon.png');
+    this.load.image('NSE', ' dungeons/nes_dungeon.png');
+    this.load.image('NSW', 'dungeons/nws_dungeon.png');
+    this.load.image('NEW', 'dungeons/new_dungeon.png');
+    this.load.image('SEW', 'dungeons/sew_dungeon.png');
+    this.load.image('NE', 'dungeons/ne_dungeon.png');
+    this.load.image('NW', 'dungeons/nw_dungeon.png');
+    this.load.image('NS', 'dungeons/ns_dungeon.png');
+    this.load.image('SE', 'dungeons/se_dungeon.png');
+    this.load.image('SW', 'dungeons/sw_dungeon.png');
+    this.load.image('EW', 'dungeons/ew_dungeon.png');
+    this.load.image('N', 'dungeons/n_dungeon.png');
+    this.load.image('S', 'dungeons/s_dungeon.png');
+    this.load.image('E', 'dungeons/e_dungeon.png');
+    this.load.image('W', 'dungeons/w_dungeon.png');
 }
 
 function create ()
@@ -135,7 +136,7 @@ function check_neighbors(cell) {
         neighbors += 'E';
     if (floorplan[cell-1])
         neighbors += 'W';
-    
+    console.log(neighbors)
     return neighbors.toString()
 }
 

@@ -2,17 +2,25 @@
   "name": "dungeon-rush",
   "version": "1.0.0",
   "description": "A roguelike dungeon crawler written with node.js and electron.",
-  "main": "main.js",
+  "source": "src/index.html",
   "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean-dist": "rm -rf dist && mkdir dist",
+    "copy-assets": "cp -r assets/* dist",
+    "start": "parcel",
+    "build": "npm run clean-dist && npm run copy-assets && parcel build"
   },
   "author": "Jake Gerard",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^21.0.1"
+    "electron": "^21.0.1",
+    "parcel": "latest"
   },
   "dependencies": {
-    "electron-reload": "*"
+    "electron-reload": "^2.0.0-alpha.1",
+    "phaser": "^3.55.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakegerard18/Dungeon-Rush.git"
   }
 }
