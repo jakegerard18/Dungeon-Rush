@@ -2,7 +2,7 @@ import Phaser from 'phaser'
 import Preloader from './scenes/Preloader'
 import Game from './scenes/Game'
 
-const config = {
+export default new Phaser.Game({
     type: Phaser.AUTO,
     width: 800,
     height: 500,
@@ -13,6 +13,4 @@ const config = {
         }
     },
     scene: [Preloader, Game]
-}
-
-export default new Phaser.Game(config);
+});
