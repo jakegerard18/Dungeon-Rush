@@ -97,7 +97,5 @@ export default class Game extends Phaser.Scene {
             this.hero.anims.play('hero-idle');
             this.hero.setVelocity(0, 0);
         }
-
-
     }
 }
