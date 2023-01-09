@@ -1,5 +1,6 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 import { debugDraw } from '../utils/debug';
+import {createHeroAnims, createSlimeAnims} from '../Animations';
 
 const OFFSET_LEFT = 30;
 const OFFSET_RIGHT = 16;
@@ -7,6 +8,7 @@ const OFFSET_RIGHT = 16;
 export default class Game extends Phaser.Scene {
     private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     private hero!: Phaser.Physics.Arcade.Sprite;
+    private slime!: Phaser.Physics.Arcade.Sprite;
 
     constructor() {
         super('game');
@@ -14,6 +16,8 @@ export default class Game extends Phaser.Scene {
 
     preload() {
         this.cursors = this.input.keyboard.createCursorKeys();
+        createHeroAnims(this);
+        createSlimeAnims(this);
     }
 
     create() {
@@ -25,46 +29,10 @@ export default class Game extends Phaser.Scene {
 
         wallsLayer.setCollisionByProperty({collides: true});
 
-        this.hero = this.physics.add.sprite(128, 128, 'hero')
+        this.hero = this.physics.add.sprite(128, 128, 'hero');
+        this.slime = this.physics.add.sprite(128, 128, 'slime');
         this.hero.body.setSize(this.hero.width * 0.3, this.hero.height * 0.3)
-
-        this.anims.create({
-            key: 'hero-idle',
-            frames: this.anims.generateFrameNames('hero', {prefix: 'hero-idle-', start: 0, end: 2 }),
-            yoyo: true,
-            repeat: -1,
-            frameRate: 5
-        });
-        this.anims.create({
-            key: 'hero-victory',
-            frames: this.anims.generateFrameNames('hero', {prefix: 'hero-victory-', start: 0, end: 2 }),
-            repeat: -1,
-            frameRate: 5
-        });
-        this.anims.create({
-            key: 'hero-walk-down',
-            frames: this.anims.generateFrameNames('hero', {prefix: 'hero-walk-down-', start: 0, end: 3 }),
-            repeat: -1,
-            frameRate: 10
-        });
-        this.anims.create({
-            key: 'hero-walk-up',
-            frames: this.anims.generateFrameNames('hero', {prefix: 'hero-walk-up-', start: 0, end: 3 }),
-            repeat: -1,
-            frameRate: 10
-        });
-        this.anims.create({
-            key: 'hero-walk-right',
-            frames: this.anims.generateFrameNames('hero', {prefix: 'hero-walk-right-', start: 0, end: 3 }),
-            repeat: -1,
-            frameRate: 10
-        });
-        this.anims.create({
-            key: 'hero-walk-left',
-            frames: this.anims.generateFrameNames('hero', {prefix: 'hero-walk-right-', start: 0, end: 3 }),
-            repeat: -1,
-            frameRate: 10
-        });
+        this.slime.body.setSize(this.slime.width * 0.3, this.slime.height * 0.3)
 
         this.physics.add.collider(this.hero, wallsLayer);
         this.cameras.main.startFollow(this.hero, true);
@@ -94,7 +62,7 @@ export default class Game extends Phaser.Scene {
             this.hero.anims.play('hero-walk-down', true);
             this.hero.setVelocity(0, speed);
         } else {
-            this.hero.anims.play('hero-idle');
+            this.hero.anims.play('hero-idle', true);
             this.hero.setVelocity(0, 0);
         }
     }
