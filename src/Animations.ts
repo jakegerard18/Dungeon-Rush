@@ -12,7 +12,7 @@ export function createHeroAnims( scene: Phaser.Scene) {
     });
     scene.anims.create({
         key: 'hero-victory',
-        frames: scene.anims.generateFrameNames('hero', {prefix: 'hero-victory-', start: 0, end: 2 }),
+        frames: scene.anims.generateFrameNames('hero', {prefix: 'hero-taunt-', start: 0, end: 2 }),
         repeat: -1,
         frameRate: 5
     });
@@ -39,7 +39,7 @@ export function createHeroAnims( scene: Phaser.Scene) {
         frames: scene.anims.generateFrameNames('hero', {prefix: 'hero-walk-right-', start: 0, end: 3 }),
         repeat: -1,
         frameRate: 10
-    });	
+    });
 }
 
 // Slime animations

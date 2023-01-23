@@ -17,7 +17,7 @@ export default class Game extends Phaser.Scene {
     preload() {
         this.cursors = this.input.keyboard.createCursorKeys();
         createHeroAnims(this);
-        createSlimeAnims(this);
+        // createSlimeAnims(this);
     }
 
     create() {
@@ -30,9 +30,7 @@ export default class Game extends Phaser.Scene {
         wallsLayer.setCollisionByProperty({collides: true});
 
         this.hero = this.physics.add.sprite(128, 128, 'hero');
-        this.slime = this.physics.add.sprite(128, 128, 'slime');
         this.hero.body.setSize(this.hero.width * 0.3, this.hero.height * 0.3)
-        this.slime.body.setSize(this.slime.width * 0.3, this.slime.height * 0.3)
 
         this.physics.add.collider(this.hero, wallsLayer);
         this.cameras.main.startFollow(this.hero, true);
