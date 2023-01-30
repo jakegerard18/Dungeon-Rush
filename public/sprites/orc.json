@@ -1,0 +1,356 @@
+{
+    "frames": {
+        "orc-idle-0": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-idle-1": {
+            "frame": {
+                "x": 48,
+                "y": 0,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-idle-2": {
+            "frame": {
+                "x": 96,
+                "y": 0,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-idle-3": {
+            "frame": {
+                "x": 144,
+                "y": 0,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-taunt-0": {
+            "frame": {
+                "x": 0,
+                "y": 48,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-taunt-1": {
+            "frame": {
+                "x": 48,
+                "y": 48,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-taunt-2": {
+            "frame": {
+                "x": 96,
+                "y": 48,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-taunt-3": {
+            "frame": {
+                "x": 144,
+                "y": 48,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-down-0": {
+            "frame": {
+                "x": 0,
+                "y": 96,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-down-1": {
+            "frame": {
+                "x": 48,
+                "y": 96,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-down-2": {
+            "frame": {
+                "x": 96,
+                "y": 96,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-down-3": {
+            "frame": {
+                "x": 144,
+                "y": 96,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-right-0": {
+            "frame": {
+                "x": 0,
+                "y": 144,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-right-1": {
+            "frame": {
+                "x": 48,
+                "y": 144,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-right-2": {
+            "frame": {
+                "x": 96,
+                "y": 144,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-right-3": {
+            "frame": {
+                "x": 144,
+                "y": 144,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-up-0": {
+            "frame": {
+                "x": 0,
+                "y": 192,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-up-1": {
+            "frame": {
+                "x": 48,
+                "y": 192,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-up-2": {
+            "frame": {
+                "x": 96,
+                "y": 192,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-walk-up-3": {
+            "frame": {
+                "x": 144,
+                "y": 192,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-down-0": {
+            "frame": {
+                "x": 0,
+                "y": 240,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-down-1": {
+            "frame": {
+                "x": 48,
+                "y": 240,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-down-2": {
+            "frame": {
+                "x": 96,
+                "y": 240,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-down-3": {
+            "frame": {
+                "x": 144,
+                "y": 240,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-right-0": {
+            "frame": {
+                "x": 0,
+                "y": 288,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-right-1": {
+            "frame": {
+                "x": 48,
+                "y": 288,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-right-2": {
+            "frame": {
+                "x": 96,
+                "y": 288,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-right-3": {
+            "frame": {
+                "x": 144,
+                "y": 288,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-up-0": {
+            "frame": {
+                "x": 0,
+                "y": 336,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-up-1": {
+            "frame": {
+                "x": 48,
+                "y": 336,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-up-2": {
+            "frame": {
+                "x": 96,
+                "y": 336,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-attack-up-3": {
+            "frame": {
+                "x": 144,
+                "y": 336,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-down-0": {
+            "frame": {
+                "x": 0,
+                "y": 384,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-down-1": {
+            "frame": {
+                "x": 48,
+                "y": 384,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-down-2": {
+            "frame": {
+                "x": 96,
+                "y": 384,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-down-3": {
+            "frame": {
+                "x": 144,
+                "y": 384,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-right-0": {
+            "frame": {
+                "x": 0,
+                "y": 432,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-right-1": {
+            "frame": {
+                "x": 48,
+                "y": 432,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-right-2": {
+            "frame": {
+                "x": 96,
+                "y": 432,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-right-3": {
+            "frame": {
+                "x": 144,
+                "y": 432,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-up-0": {
+            "frame": {
+                "x": 0,
+                "y": 480,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-up-1": {
+            "frame": {
+                "x": 48,
+                "y": 480,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-up-2": {
+            "frame": {
+                "x": 96,
+                "y": 480,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "orc-damage-up-3": {
+            "frame": {
+                "x": 144,
+                "y": 480,
+                "w": 48,
+                "h": 48
+            }
+        }
+    }
+}

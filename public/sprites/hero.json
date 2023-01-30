@@ -1,0 +1,356 @@
+{
+  "frames": {
+    "hero-idle-0": {
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-idle-1": {
+      "frame": {
+        "x": 48,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-idle-2": {
+      "frame": {
+        "x": 96,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "anim-3": {
+      "frame": {
+        "x": 144,
+        "y": 0,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-taunt-0": {
+      "frame": {
+        "x": 0,
+        "y": 48,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-taunt-1": {
+      "frame": {
+        "x": 48,
+        "y": 48,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-taunt-2": {
+      "frame": {
+        "x": 96,
+        "y": 48,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "anim-7": {
+      "frame": {
+        "x": 144,
+        "y": 48,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-down-0": {
+      "frame": {
+        "x": 0,
+        "y": 96,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-down-1": {
+      "frame": {
+        "x": 48,
+        "y": 96,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-down-2": {
+      "frame": {
+        "x": 96,
+        "y": 96,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-down-3": {
+      "frame": {
+        "x": 144,
+        "y": 96,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-right-0": {
+      "frame": {
+        "x": 0,
+        "y": 144,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-right-1": {
+      "frame": {
+        "x": 48,
+        "y": 144,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-right-2": {
+      "frame": {
+        "x": 96,
+        "y": 144,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-right-3": {
+      "frame": {
+        "x": 144,
+        "y": 144,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-up-0": {
+      "frame": {
+        "x": 0,
+        "y": 192,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-up-1": {
+      "frame": {
+        "x": 48,
+        "y": 192,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-up-2": {
+      "frame": {
+        "x": 96,
+        "y": 192,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-walk-up-3": {
+      "frame": {
+        "x": 144,
+        "y": 192,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-down-0": {
+      "frame": {
+        "x": 0,
+        "y": 240,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-down-1": {
+      "frame": {
+        "x": 48,
+        "y": 240,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-down-2": {
+      "frame": {
+        "x": 96,
+        "y": 240,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-down-3": {
+      "frame": {
+        "x": 144,
+        "y": 240,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-right-0": {
+      "frame": {
+        "x": 0,
+        "y": 288,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-right-1": {
+      "frame": {
+        "x": 48,
+        "y": 288,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-right-2": {
+      "frame": {
+        "x": 96,
+        "y": 288,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-right-3": {
+      "frame": {
+        "x": 144,
+        "y": 288,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-up-0": {
+      "frame": {
+        "x": 0,
+        "y": 336,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-up-1": {
+      "frame": {
+        "x": 48,
+        "y": 336,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-up-2": {
+      "frame": {
+        "x": 96,
+        "y": 336,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-attack-up-3": {
+      "frame": {
+        "x": 144,
+        "y": 336,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-down-0": {
+      "frame": {
+        "x": 0,
+        "y": 384,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-down-1": {
+      "frame": {
+        "x": 48,
+        "y": 384,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-down-2": {
+      "frame": {
+        "x": 96,
+        "y": 384,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-down-3": {
+      "frame": {
+        "x": 144,
+        "y": 384,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-right-0": {
+      "frame": {
+        "x": 0,
+        "y": 432,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-right-1": {
+      "frame": {
+        "x": 48,
+        "y": 432,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-right-2": {
+      "frame": {
+        "x": 96,
+        "y": 432,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-right-3": {
+      "frame": {
+        "x": 144,
+        "y": 432,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-up-0": {
+      "frame": {
+        "x": 0,
+        "y": 480,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-up-1": {
+      "frame": {
+        "x": 48,
+        "y": 480,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-up-2": {
+      "frame": {
+        "x": 96,
+        "y": 480,
+        "w": 48,
+        "h": 48
+      }
+    },
+    "hero-damage-up-3": {
+      "frame": {
+        "x": 144,
+        "y": 480,
+        "w": 48,
+        "h": 48
+      }
+    }
+  }
+}

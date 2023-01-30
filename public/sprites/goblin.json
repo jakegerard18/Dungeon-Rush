@@ -1,0 +1,356 @@
+{
+    "frames": {
+        "goblin-idle-0": {
+            "frame": {
+                "x": 0,
+                "y": 0,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-idle-1": {
+            "frame": {
+                "x": 48,
+                "y": 0,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-idle-2": {
+            "frame": {
+                "x": 96,
+                "y": 0,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-idle-3": {
+            "frame": {
+                "x": 144,
+                "y": 0,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-taunt-0": {
+            "frame": {
+                "x": 0,
+                "y": 48,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-taunt-1": {
+            "frame": {
+                "x": 48,
+                "y": 48,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-taunt-2": {
+            "frame": {
+                "x": 96,
+                "y": 48,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-taunt-3": {
+            "frame": {
+                "x": 144,
+                "y": 48,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-down-0": {
+            "frame": {
+                "x": 0,
+                "y": 96,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-down-1": {
+            "frame": {
+                "x": 48,
+                "y": 96,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-down-2": {
+            "frame": {
+                "x": 96,
+                "y": 96,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-down-3": {
+            "frame": {
+                "x": 144,
+                "y": 96,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-right-0": {
+            "frame": {
+                "x": 0,
+                "y": 144,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-right-1": {
+            "frame": {
+                "x": 48,
+                "y": 144,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-right-2": {
+            "frame": {
+                "x": 96,
+                "y": 144,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-right-3": {
+            "frame": {
+                "x": 144,
+                "y": 144,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-up-0": {
+            "frame": {
+                "x": 0,
+                "y": 192,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-up-1": {
+            "frame": {
+                "x": 48,
+                "y": 192,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-up-2": {
+            "frame": {
+                "x": 96,
+                "y": 192,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-walk-up-3": {
+            "frame": {
+                "x": 144,
+                "y": 192,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-down-0": {
+            "frame": {
+                "x": 0,
+                "y": 240,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-down-1": {
+            "frame": {
+                "x": 48,
+                "y": 240,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-down-2": {
+            "frame": {
+                "x": 96,
+                "y": 240,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-down-3": {
+            "frame": {
+                "x": 144,
+                "y": 240,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-right-0": {
+            "frame": {
+                "x": 0,
+                "y": 288,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-right-1": {
+            "frame": {
+                "x": 48,
+                "y": 288,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-right-2": {
+            "frame": {
+                "x": 96,
+                "y": 288,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-right-3": {
+            "frame": {
+                "x": 144,
+                "y": 288,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-up-0": {
+            "frame": {
+                "x": 0,
+                "y": 336,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-up-1": {
+            "frame": {
+                "x": 48,
+                "y": 336,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-up-2": {
+            "frame": {
+                "x": 96,
+                "y": 336,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-attack-up-3": {
+            "frame": {
+                "x": 144,
+                "y": 336,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-down-0": {
+            "frame": {
+                "x": 0,
+                "y": 384,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-down-1": {
+            "frame": {
+                "x": 48,
+                "y": 384,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-down-2": {
+            "frame": {
+                "x": 96,
+                "y": 384,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-down-3": {
+            "frame": {
+                "x": 144,
+                "y": 384,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-right-0": {
+            "frame": {
+                "x": 0,
+                "y": 432,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-right-1": {
+            "frame": {
+                "x": 48,
+                "y": 432,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-right-2": {
+            "frame": {
+                "x": 96,
+                "y": 432,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-right-3": {
+            "frame": {
+                "x": 144,
+                "y": 432,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-up-0": {
+            "frame": {
+                "x": 0,
+                "y": 480,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-up-1": {
+            "frame": {
+                "x": 48,
+                "y": 480,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-up-2": {
+            "frame": {
+                "x": 96,
+                "y": 480,
+                "w": 48,
+                "h": 48
+            }
+        },
+        "goblin-damage-up-3": {
+            "frame": {
+                "x": 144,
+                "y": 480,
+                "w": 48,
+                "h": 48
+            }
+        }
+    }
+}
