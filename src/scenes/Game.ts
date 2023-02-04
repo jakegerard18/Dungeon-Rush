@@ -3,6 +3,7 @@ import { debugDraw } from '../utils/debug';
 import {createAnimations} from '../Animations';
 import { addSprite } from '../SpriteHelper';
 import { updateCursors } from '../CursorsHelper';
+import Slime from '../enemies/Slime';
 
 const OFFSET_LEFT = 30;
 const OFFSET_RIGHT = 16;
@@ -42,20 +43,33 @@ export default class Game extends Phaser.Scene {
         const floorLayer = dungeon.createLayer('Floor', tileset);
         const wallLayer = dungeon.createLayer('Walls', tileset);
 
-        this.hero = addSprite(this, 'hero', 100, 100);
-        this.slime = addSprite(this, 'slime', 200, 100);
-        this.orc = addSprite(this, 'orc', 300, 100);
-        this.bat = addSprite(this, 'bat', 400, 100);
-        this.troll = addSprite(this, 'troll', 500, 100);
-        this.spider = addSprite(this, 'spider', 600, 100);
-        this.rat = addSprite(this, 'rat', 700, 100);
-        this.goblin = addSprite(this, 'goblin', 800, 100);
-        this.sniper = addSprite(this, 'sniper', 900, 100);
+        this.hero = addSprite(this, 'hero', 60, 100);
+        const slimes = this.physics.add.group({
+            classType: Slime
+        })
+        slimes.get(80, 100, 'slime');
+        // this.orc = addSprite(this, 'orc', 100, 100);
+        // this.bat = addSprite(this, 'bat', 120, 100);
+        // this.troll = addSprite(this, 'troll', 140, 100);
+        // this.spider = addSprite(this, 'spider', 160, 100);
+        // this.rat = addSprite(this, 'rat', 180, 100);
+        // this.goblin = addSprite(this, 'goblin', 200, 100);
+        // this.sniper = addSprite(this, 'sniper', 220, 100);
 
         wallLayer.setCollisionByProperty({collides: true});
 
         this.physics.add.collider(this.hero, wallLayer);
         this.cameras.main.startFollow(this.hero, true);
+        this.physics.add.collider(slimes, wallLayer);
+
+
+        // this.orc.anims.play('orc-idle');
+        // this.bat.anims.play('bat-idle');
+        // this.troll.anims.play('troll-idle');
+        // this.spider.anims.play('spider-idle');
+        // this.rat.anims.play('rat-idle');
+        // this.goblin.anims.play('goblin-idle');
+        // this.sniper.anims.play('sniper-idle');
     }
 
     update(t: number, dt: number) {
@@ -65,14 +79,5 @@ export default class Game extends Phaser.Scene {
 
         const velocity = 100;
         updateCursors(this.cursors, this.hero, 'hero', velocity, OFFSET_LEFT, OFFSET_RIGHT);
-        updateCursors(this.cursors, this.slime, 'slime', velocity, OFFSET_LEFT, OFFSET_RIGHT);
-        updateCursors(this.cursors, this.orc, 'orc', velocity, OFFSET_LEFT, OFFSET_RIGHT);
-        updateCursors(this.cursors, this.bat, 'bat', velocity, OFFSET_LEFT, OFFSET_RIGHT);
-        updateCursors(this.cursors, this.troll, 'troll', velocity, OFFSET_LEFT, OFFSET_RIGHT);
-        updateCursors(this.cursors, this.spider, 'spider', velocity, OFFSET_LEFT, OFFSET_RIGHT);
-        updateCursors(this.cursors, this.rat, 'rat', velocity, OFFSET_LEFT, OFFSET_RIGHT);
-        updateCursors(this.cursors, this.goblin, 'goblin', velocity, OFFSET_LEFT, OFFSET_RIGHT);
-        updateCursors(this.cursors, this.sniper, 'sniper', velocity, OFFSET_LEFT, OFFSET_RIGHT);
-
     }
 }
