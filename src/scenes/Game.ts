@@ -2,13 +2,9 @@ import Phaser from 'phaser';
 import { debugDraw } from '../utils/debug';
 import {createAnimations} from '../Animations';
 import { addSprite } from '../SpriteHelper';
-import { updateCursors } from '../CursorsHelper';
 import { handleHeroSlimeCollision } from '../Collisions';
 import Slime from '../sprites/Slime';
 import '../sprites/Hero'
-
-const OFFSET_LEFT = 30;
-const OFFSET_RIGHT = 16;
 
 export default class Game extends Phaser.Scene {
     private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
@@ -60,11 +56,8 @@ export default class Game extends Phaser.Scene {
             }
             return;
         }
-        if (!this.cursors || !this.hero) {
-            return;
+        if (this.hero) {
+            this.hero.update(this.cursors);
         }
-
-        const velocity = 100;
-        updateCursors(this.cursors, this.hero, 'hero', velocity, OFFSET_LEFT, OFFSET_RIGHT);
     }
 }

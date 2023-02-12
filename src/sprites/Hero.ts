@@ -1,4 +1,9 @@
 import Phaser from 'phaser'
+import { updateCursors } from '../CursorsHelper';
+
+const OFFSET_LEFT = 30;
+const OFFSET_RIGHT = 16;
+const VELOCITY = 100;
 
 declare global {
     namespace Phaser.GameObjects {
@@ -9,11 +14,13 @@ declare global {
 }
 
 export default class Hero extends Phaser.Physics.Arcade.Sprite {
-
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | number) {
         super(scene, x, y, texture, frame);
         this.anims.play('hero-idle');
+    }
 
+    update(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
+        updateCursors(cursors, this, 'hero', VELOCITY, OFFSET_LEFT, OFFSET_RIGHT);
     }
 }
 
