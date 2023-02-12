@@ -6,7 +6,7 @@ export function handleHeroSlimeCollision(obj1: Phaser.GameObjects.GameObject, ob
     const dx = this.hero.x - slime.x;
     const dy = this.hero.y - slime.y;
     const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(200);
-    this.hero.setVelocity(dir.x, dir.y);
+    this.hero.handleDamage(dir);
     this.hit = 1;
 }
 

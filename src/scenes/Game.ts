@@ -5,11 +5,11 @@ import { addSprite } from '../SpriteHelper';
 import { handleHeroSlimeCollision } from '../Collisions';
 import Slime from '../sprites/Slime';
 import '../sprites/Hero'
+import Hero from '../sprites/Hero';
 
 export default class Game extends Phaser.Scene {
     private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
-    private hero!: Phaser.Physics.Arcade.Sprite;
-    private hit = 0;
+    private hero!: Hero;
 
     constructor() {
         super('game');
@@ -49,13 +49,6 @@ export default class Game extends Phaser.Scene {
 
 
     update(t: number, dt: number) {
-        if (this.hit > 0) {
-            ++this.hit
-            if (this.hit > 10) {
-                this.hit = 0;
-            }
-            return;
-        }
         if (this.hero) {
             this.hero.update(this.cursors);
         }
