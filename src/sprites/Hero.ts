@@ -15,12 +15,18 @@ declare global {
 
 enum HealthState {
     IDLE,
-    DAMAGE
+    DAMAGE,
+    DEAD
 }
 
 export default class Hero extends Phaser.Physics.Arcade.Sprite {
     private healthState = HealthState.IDLE;
     private damageTime = 0;
+    private _health = 3;
+
+    get health() {
+        return this._health;
+    }
 
     constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | number) {
         super(scene, x, y, texture, frame);
@@ -31,15 +37,20 @@ export default class Hero extends Phaser.Physics.Arcade.Sprite {
         if(this.healthState === HealthState.DAMAGE) {
             return;
         }
-        this.setVelocity(dir.x, dir.y);
-        this.setTint(0xff0000);
-        this.healthState = HealthState.DAMAGE;
-        this.damageTime = 0;
+        if (this._health < 0) {
+            this.healthState = HealthState.DEAD;
+        } else {
+            this.setVelocity(dir.x, dir.y);
+            this.setTint(0xff0000);
+            this.healthState = HealthState.DAMAGE;
+            this.damageTime = 0;
+            --this._health    
+        }
     }
 
     preUpdate(t: number, dt: number) {
         super.preUpdate(t, dt);
-        
+
         switch (this.healthState) {
         case HealthState.IDLE:
             break;
@@ -56,7 +67,8 @@ export default class Hero extends Phaser.Physics.Arcade.Sprite {
     }
 
     update(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
-        if(this.healthState === HealthState.DAMAGE) {
+        if(this.healthState === HealthState.DAMAGE 
+           || this.healthState === HealthState.DEAD) {
             return;
         }
         updateCursors(cursors, this, 'hero', VELOCITY, OFFSET_LEFT, OFFSET_RIGHT);

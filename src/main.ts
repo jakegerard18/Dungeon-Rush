@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import Preloader from './scenes/Preloader'
 import Game from './scenes/Game'
+import UI from './scenes/UI';
 
 export default new Phaser.Game({
     type: Phaser.AUTO,
@@ -14,5 +15,5 @@ export default new Phaser.Game({
             debug: true
         }
     },
-    scene: [Preloader, Game]
+    scene: [Preloader, Game, UI]
 });

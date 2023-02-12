@@ -22,6 +22,7 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
+        this.scene.run('ui');
         const dungeon = this.make.tilemap({ key: 'n_dungeon' });
         const tileset = dungeon.addTilesetImage('dungeon_tiles', 'tiles');
         const floorLayer = dungeon.createLayer('Floor', tileset);
@@ -43,7 +44,7 @@ export default class Game extends Phaser.Scene {
         this.physics.add.collider(this.hero, wallLayer);
         this.cameras.main.startFollow(this.hero, true);
         this.physics.add.collider(slimes, wallLayer);
-        this.physics.add.collider(slimes, this.hero, handleHeroSlimeCollision, undefined, this);
+        this.physics.add.collider(this.hero, slimes, handleHeroSlimeCollision, undefined, this);
     }
 
 
