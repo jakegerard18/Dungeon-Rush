@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 
 export function createAnimations(scene: Phaser.Scene, sprite: string) {
+    // Movement animations
     scene.anims.create({
         key: `${sprite}-idle`,
         frames: scene.anims.generateFrameNames(sprite, {prefix: `${sprite}-idle-`, start: 0, end: 2 }),
@@ -38,4 +39,30 @@ export function createAnimations(scene: Phaser.Scene, sprite: string) {
         repeat: -1,
         frameRate: 10
     });
+    // Attack animations
+    scene.anims.create({
+        key: `${sprite}-attack-down`,
+        frames: scene.anims.generateFrameNames(sprite, {prefix: `${sprite}-attack-down-`, start: 0, end: 3 }),
+        repeat: -1,
+        frameRate: 20
+    });
+    scene.anims.create({
+        key: `${sprite}-attack-up`,
+        frames: scene.anims.generateFrameNames(sprite, {prefix: `${sprite}-attack-up-`, start: 0, end: 3 }),
+        repeat: -1,
+        frameRate: 20
+    });
+    scene.anims.create({
+        key: `${sprite}-attack-right`,
+        frames: scene.anims.generateFrameNames(sprite, {prefix: `${sprite}-attack-right-`, start: 0, end: 3 }),
+        repeat: -1,
+        frameRate: 20
+    });
+    scene.anims.create({
+        key: `${sprite}-attack-left`,
+        frames: scene.anims.generateFrameNames(sprite, {prefix: `${sprite}-attack-right-`, start: 0, end: 3 }),
+        repeat: -1,
+        frameRate: 20
+    });
+    // Damage animations
 }
