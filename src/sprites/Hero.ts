@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import { updateCursors } from '../CursorsHelper';
+import { updateKeys } from '../KeysHelper';
 
 const OFFSET_LEFT = 30;
 const OFFSET_RIGHT = 16;
@@ -44,7 +44,7 @@ export default class Hero extends Phaser.Physics.Arcade.Sprite {
             this.setTint(0xff0000);
             this.healthState = HealthState.DAMAGE;
             this.damageTime = 0;
-            --this._health    
+            --this._health
         }
     }
 
@@ -66,12 +66,12 @@ export default class Hero extends Phaser.Physics.Arcade.Sprite {
         }
     }
 
-    update(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
-        if(this.healthState === HealthState.DAMAGE 
+    update(keys) {
+        if(this.healthState === HealthState.DAMAGE
            || this.healthState === HealthState.DEAD) {
             return;
         }
-        updateCursors(cursors, this, 'hero', VELOCITY, OFFSET_LEFT, OFFSET_RIGHT);
+        updateKeys(keys, this, 'hero', VELOCITY, OFFSET_LEFT, OFFSET_RIGHT);
     }
 }
 

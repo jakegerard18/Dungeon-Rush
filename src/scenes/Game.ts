@@ -8,15 +8,28 @@ import '../sprites/Hero'
 import Hero from '../sprites/Hero';
 
 export default class Game extends Phaser.Scene {
-    private cursors!: Phaser.Types.Input.Keyboard.CursorKeys;
     private hero!: Hero;
+    private movementKeys = {
+      'up': Phaser.Input.Keyboard.KeyCodes.W,
+      'down': Phaser.Input.Keyboard.KeyCodes.S,
+      'left': Phaser.Input.Keyboard.KeyCodes.A,
+      'right': Phaser.Input.Keyboard.KeyCodes.D
+    };
+    private attackKeys = {
+      'attackUp': Phaser.Input.Keyboard.KeyCodes.UP,
+      'attackDown': Phaser.Input.Keyboard.KeyCodes.DOWN,
+      'attackLeft': Phaser.Input.Keyboard.KeyCodes.LEFT,
+      'attackRight': Phaser.Input.Keyboard.KeyCodes.RIGHT
+    };
+    private keys = { ...this.movementKeys, ...this.attackKeys };
+    private initializedKeys;
 
     constructor() {
         super('game');
     }
 
     preload() {
-        this.cursors = this.input.keyboard.createCursorKeys();
+        this.initializedKeys = this.input.keyboard.addKeys(this.keys);
         createAnimations(this, 'hero');
         createAnimations(this, 'slime');
     }
@@ -51,7 +64,7 @@ export default class Game extends Phaser.Scene {
 
     update(t: number, dt: number) {
         if (this.hero) {
-            this.hero.update(this.cursors);
+            this.hero.update(this.initializedKeys);
         }
     }
 }
