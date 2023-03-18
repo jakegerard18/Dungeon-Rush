@@ -1,4 +1,0 @@
-TODO:
-1. Research vectors
-2. Research GameObjectFactorys
-3. Research typescript in general
