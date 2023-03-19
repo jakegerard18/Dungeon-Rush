@@ -25,14 +25,18 @@ export function updateKeys(keys, sprite: Phaser.Physics.Arcade.Sprite, spriteKey
         sprite.anims.play(`${spriteKey}-attack-left`, true);
         sprite.scaleX = -1;
         sprite.body.offset.x = OFFSET_LEFT;
+        sprite.setVelocity(0, 0);
     } else if (keys.attackRight.isDown) {
         sprite.anims.play(`${spriteKey}-attack-right`, true);
         sprite.scaleX = 1;
         sprite.body.offset.x = OFFSET_RIGHT;
+        sprite.setVelocity(0, 0);
     } else if (keys.attackUp.isDown) {
         sprite.anims.play(`${spriteKey}-attack-up`, true);
+        sprite.setVelocity(0, 0);
     } else if (keys.attackDown.isDown) {
         sprite.anims.play(`${spriteKey}-attack-down`, true);
+        sprite.setVelocity(0, 0);
     } else {
         sprite.anims.play(`${spriteKey}-idle`, true);
         sprite.setVelocity(0, 0);
