@@ -37,6 +37,8 @@ export function updateKeys(keys, sprite: Phaser.Physics.Arcade.Sprite, spriteKey
     } else if (keys.attackDown.isDown) {
         sprite.anims.play(`${spriteKey}-attack-down`, true);
         sprite.setVelocity(0, 0);
+
+    // Idle
     } else {
         sprite.anims.play(`${spriteKey}-idle`, true);
         sprite.setVelocity(0, 0);
