@@ -1,8 +1,6 @@
 import Phaser from 'phaser'
 import { updateKeys } from '../KeysHelper';
 
-const OFFSET_LEFT = 30;
-const OFFSET_RIGHT = 16;
 const VELOCITY = 100;
 
 declare global {
@@ -71,7 +69,7 @@ export default class Hero extends Phaser.Physics.Arcade.Sprite {
            || this.healthState === HealthState.DEAD) {
             return;
         }
-        updateKeys(keys, this, 'hero', VELOCITY, OFFSET_LEFT, OFFSET_RIGHT);
+        updateKeys(keys, this, 'hero', VELOCITY);
     }
 }
 
