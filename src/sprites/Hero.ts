@@ -4,6 +4,7 @@ import { updateKeys } from '../KeysHelper';
 export namespace Hero {
   export const SPRITE_KEY = 'hero';
   export const BODY_SIZE_ADJUSTMENT = 0.3;
+
   export enum HealthState {
     IDLE,
     DAMAGE,
@@ -30,7 +31,8 @@ export namespace Hero {
     AttackingLeft = 46.8,
     AttackingRight = 16.8,
     AttackingUp = 16.8,
-    AttackingDown = 16.8
+    AttackingDown = 16.8,
+    Idle = 16.8
   };
 
   export enum BodyOffsetY {
@@ -41,7 +43,8 @@ export namespace Hero {
     AttackingLeft = 16.8,
     AttackingRight = 16.8,
     AttackingUp = 2.8,
-    AttackingDown = 16.8
+    AttackingDown = 16.8,
+    Idle = 16.8
   };
 
   export enum VelocityX {
@@ -52,7 +55,8 @@ export namespace Hero {
     AttackingLeft = 0,
     AttackingRight = 0,
     AttackingUp = 0,
-    AttackingDown = 0
+    AttackingDown = 0,
+    Idle = 0
   }
 
   export enum VelocityY {
@@ -63,10 +67,35 @@ export namespace Hero {
     AttackingLeft = 0,
     AttackingRight = 0,
     AttackingUp = 0,
-    AttackingDown = 0
+    AttackingDown = 0,
+    Idle = 0
   }
 
   export class HeroClass extends Phaser.Physics.Arcade.Sprite {
+    private bodyWidths = {
+      MovingLeft: this.width * BODY_SIZE_ADJUSTMENT,
+      MovingRight: this.width * BODY_SIZE_ADJUSTMENT,
+      MovingUp: this.width * BODY_SIZE_ADJUSTMENT,
+      MovingDown: this.width * BODY_SIZE_ADJUSTMENT,
+      AttackingLeft: (this.width * BODY_SIZE_ADJUSTMENT) + 16,
+      AttackingRight: (this.width * BODY_SIZE_ADJUSTMENT) + 16,
+      AttackingUp: this.width * BODY_SIZE_ADJUSTMENT,
+      AttackingDown: this.width * BODY_SIZE_ADJUSTMENT,
+      Idle: this.width * BODY_SIZE_ADJUSTMENT
+    }
+
+    private bodyHeights = {
+      MovingLeft: this.height * BODY_SIZE_ADJUSTMENT,
+      MovingRight: this.height * BODY_SIZE_ADJUSTMENT,
+      MovingUp: this.height * BODY_SIZE_ADJUSTMENT,
+      MovingDown: this.height * BODY_SIZE_ADJUSTMENT,
+      AttackingLeft: this.height * BODY_SIZE_ADJUSTMENT,
+      AttackingRight: this.height * BODY_SIZE_ADJUSTMENT,
+      AttackingUp: (this.height * BODY_SIZE_ADJUSTMENT) + 16,
+      AttackingDown: (this.height * BODY_SIZE_ADJUSTMENT) + 12,
+      Idle: this.height * BODY_SIZE_ADJUSTMENT
+    }
+
 		private healthState = HealthState.IDLE;
 		private damageTime = 0;
 		private _health = 3;
@@ -116,11 +145,10 @@ export namespace Hero {
 					|| this.healthState === HealthState.DEAD) {
 						return;
 				}
-				updateKeys(keys, this, SPRITE_KEY, AnimationKeys, BODY_SIZE_ADJUSTMENT, BodyOffsetX, BodyOffsetY, VelocityX, VelocityY);
+				updateKeys(keys, this, AnimationKeys, this.bodyWidths, this.bodyHeights, BodyOffsetX, BodyOffsetY, VelocityX, VelocityY);
 		}
 	}
 }
-
 
 declare global {
 	namespace Phaser.GameObjects {
