@@ -5,10 +5,10 @@ import { addSprite } from '../SpriteHelper';
 import { handleHeroSlimeCollision } from '../Collisions';
 import Slime from '../sprites/Slime';
 import '../sprites/Hero'
-import Hero from '../sprites/Hero';
+import { Hero } from '../sprites/Hero';
 
 export default class Game extends Phaser.Scene {
-    private hero!: Hero;
+    private hero!: Hero.HeroClass;
     private movementKeys = {
       'up': Phaser.Input.Keyboard.KeyCodes.W,
       'down': Phaser.Input.Keyboard.KeyCodes.S,
