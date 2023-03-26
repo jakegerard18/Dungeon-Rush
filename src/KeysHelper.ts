@@ -1,68 +1,54 @@
 import Phaser from "phaser";
-
-interface MovementState {
-    MovingLeft: number,
-    MovingRight: number,
-    MovingUp: number,
-    MovingDown: number,
-    AttackingLeft: number,
-    AttackingRight: number,
-    AttackingUp: number,
-    AttackingDown: number,
-    Idle: number
-}
-
-interface AnimationKeys {
-    MovingLeft: string,
-    MovingRight: string,
-    MovingUp: string,
-    MovingDown: string,
-    AttackingLeft: string,
-    AttackingRight: string,
-    AttackingUp: string,
-    AttackingDown: string,
-    Idle: string
-}
+import { Types } from "./Types"
 
 enum VerticalAxis {
     Standard = 1,
     Flipped = -1
 }
 
-export function updateKeys(keys, sprite: Phaser.Physics.Arcade.Sprite, animationKeys: AnimationKeys,
-                           bodyWidth: MovementState, bodyHeight: MovementState, bodyOffsetX: MovementState,
-                           bodyOffsetY: MovementState, velocityX: MovementState, velocityY: MovementState) {
+export function updateKeys(keys, sprite: Phaser.Physics.Arcade.Sprite, animationKeys: Types.AnimationKeys,
+                           bodyWidth: Types.MovementState, bodyHeight: Types.MovementState, bodyOffsetX: Types.MovementState,
+                           bodyOffsetY: Types.MovementState, velocityX: Types.MovementState, velocityY: Types.MovementState) {
 
     // Movement keys
     if (keys.left.isDown) {
+        sprite.setState(Types.SpriteState.Vulnerable);
         keyAction(sprite, animationKeys.MovingLeft, VerticalAxis.Flipped, bodyWidth.MovingLeft, bodyHeight.MovingLeft,
                   bodyOffsetX.MovingLeft, bodyOffsetY.MovingLeft, velocityX.MovingLeft, velocityY.MovingLeft)
     } else if (keys.right.isDown) {
+        sprite.setState(Types.SpriteState.Vulnerable);
         keyAction(sprite, animationKeys.MovingRight, VerticalAxis.Standard, bodyWidth.MovingRight, bodyHeight.MovingRight,
                   bodyOffsetX.MovingRight, bodyOffsetY.MovingRight, velocityX.MovingRight, velocityY.MovingRight)
     } else if (keys.up.isDown) {
+        sprite.setState(Types.SpriteState.Vulnerable);
         keyAction(sprite, animationKeys.MovingUp, VerticalAxis.Standard, bodyWidth.MovingUp, bodyHeight.MovingUp,
                   bodyOffsetX.MovingUp, bodyOffsetY.MovingUp, velocityX.MovingUp, velocityY.MovingUp)
     } else if (keys.down.isDown) {
+        sprite.setState(Types.SpriteState.Vulnerable);       
         keyAction(sprite, animationKeys.MovingDown, VerticalAxis.Standard, bodyWidth.MovingDown, bodyHeight.MovingDown,
                   bodyOffsetX.MovingDown, bodyOffsetY.MovingDown, velocityX.MovingDown, velocityY.MovingDown)
 
     // Attack keys
     } else if (keys.attackLeft.isDown) {
+        sprite.setState(Types.SpriteState.Attacking);
         keyAction(sprite, animationKeys.AttackingLeft, VerticalAxis.Flipped, bodyWidth.AttackingLeft, bodyHeight.AttackingLeft,
-                  bodyOffsetX.AttackingLeft, bodyOffsetY.AttackingLeft, velocityX.AttackingLeft, velocityY.AttackingLeft)
+                  bodyOffsetX.AttackingLeft, bodyOffsetY.AttackingLeft, velocityX.AttackingLeft, velocityY.AttackingLeft);
     } else if (keys.attackRight.isDown) {
+        sprite.setState(Types.SpriteState.Attacking);
         keyAction(sprite, animationKeys.AttackingRight, VerticalAxis.Standard, bodyWidth.AttackingRight, bodyHeight.AttackingRight,
-                  bodyOffsetX.AttackingRight, bodyOffsetY.AttackingRight, velocityX.AttackingRight, velocityY.AttackingRight)
+                  bodyOffsetX.AttackingRight, bodyOffsetY.AttackingRight, velocityX.AttackingRight, velocityY.AttackingRight);
     } else if (keys.attackUp.isDown) {
+        sprite.setState(Types.SpriteState.Attacking);
         keyAction(sprite, animationKeys.AttackingUp, VerticalAxis.Standard, bodyWidth.AttackingUp, bodyHeight.AttackingUp,
-                  bodyOffsetX.AttackingUp, bodyOffsetY.AttackingUp, velocityX.AttackingUp, velocityY.AttackingUp)
+                  bodyOffsetX.AttackingUp, bodyOffsetY.AttackingUp, velocityX.AttackingUp, velocityY.AttackingUp);
     } else if (keys.attackDown.isDown) {
+        sprite.setState(Types.SpriteState.Attacking);
         keyAction(sprite, animationKeys.AttackingDown, VerticalAxis.Standard, bodyWidth.AttackingDown, bodyHeight.AttackingDown,
-                  bodyOffsetX.AttackingDown, bodyOffsetY.AttackingDown, velocityX.AttackingDown, velocityY.AttackingDown)
+                  bodyOffsetX.AttackingDown, bodyOffsetY.AttackingDown, velocityX.AttackingDown, velocityY.AttackingDown);
 
     // Idle
     } else {
+        sprite.setState(Types.SpriteState.Vulnerable);
         keyAction(sprite, animationKeys.Idle, VerticalAxis.Standard, bodyWidth.Idle, bodyHeight.Idle,
                   bodyOffsetX.Idle, bodyOffsetY.Idle, velocityX.Idle, velocityY.Idle)
     }
