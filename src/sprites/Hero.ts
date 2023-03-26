@@ -1,4 +1,5 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
+import { Types } from '../Types';
 import { updateKeys } from '../KeysHelper';
 
 export namespace Hero {
@@ -6,9 +7,9 @@ export namespace Hero {
   export const BODY_SIZE_ADJUSTMENT = 0.3;
 
   export enum HealthState {
-    IDLE,
-    DAMAGE,
-    DEAD
+    Idle,
+    Damage,
+    Dead
   };
 
   export enum AnimationKeys {
@@ -96,7 +97,7 @@ export namespace Hero {
       Idle: this.height * BODY_SIZE_ADJUSTMENT
     }
 
-		private healthState = HealthState.IDLE;
+		private healthState = HealthState.Idle;
 		private damageTime = 0;
 		private _health = 3;
 
@@ -110,15 +111,15 @@ export namespace Hero {
 		}
 
 		handleDamage(dir: Phaser.Math.Vector2) {
-				if(this.healthState === HealthState.DAMAGE) {
+				if(this.healthState === HealthState.Damage) {
 						return;
 				}
 				if (this._health < 0) {
-						this.healthState = HealthState.DEAD;
+						this.healthState = HealthState.Dead;
 				} else {
 						this.setVelocity(dir.x, dir.y);
 						this.setTint(0xff0000);
-						this.healthState = HealthState.DAMAGE;
+						this.healthState = HealthState.Damage;
 						this.damageTime = 0;
 						--this._health
 				}
@@ -127,22 +128,29 @@ export namespace Hero {
 		preUpdate(t: number, dt: number) {
 				super.preUpdate(t, dt);
 				switch (this.healthState) {
-				case HealthState.IDLE:
+				case HealthState.Idle:
 						break;
-				case HealthState.DAMAGE:
+				case HealthState.Damage:
 						this.damageTime += dt;
 						if (this.damageTime >= 250) {
-								this.healthState = HealthState.IDLE;
+								this.healthState = HealthState.Idle;
 								this.setTint(0xffffff);
 								this.damageTime = 0;
 						}
 						break;
 				}
+
+        switch (this.state) {
+        case Types.SpriteState.Attacking:
+          console.log('Attacking');
+        case Types.SpriteState.Vulnerable:
+          console.log('Vulnerable');
+        }
 		}
 
 		update(keys) {
-				if(this.healthState === HealthState.DAMAGE
-					|| this.healthState === HealthState.DEAD) {
+				if(this.healthState === HealthState.Damage
+					|| this.healthState === HealthState.Dead) {
 						return;
 				}
 				updateKeys(keys, this, AnimationKeys, this.bodyWidths, this.bodyHeights, BodyOffsetX, BodyOffsetY, VelocityX, VelocityY);
