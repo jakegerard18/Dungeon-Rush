@@ -12,13 +12,23 @@ import { Types } from '../Types';
 export default class Game extends Phaser.Scene {
     private hero!: Hero.HeroClass;
     private keys: Types.PlayerKeys;
+    private keyCodes = {
+        up: Phaser.Input.Keyboard.KeyCodes.W,
+        down: Phaser.Input.Keyboard.KeyCodes.S,
+        left: Phaser.Input.Keyboard.KeyCodes.A,
+        right: Phaser.Input.Keyboard.KeyCodes.D,
+        attackUp: Phaser.Input.Keyboard.KeyCodes.UP,
+        attackDown: Phaser.Input.Keyboard.KeyCodes.DOWN,
+        attackLeft: Phaser.Input.Keyboard.KeyCodes.LEFT,
+        attackRight: Phaser.Input.Keyboard.KeyCodes.RIGHT
+    };
 
     constructor() {
         super('game');
     }
 
     preload() {
-        this.keys = Keys.initKeys(Keys.keyCodes);
+        this.keys = Keys.initKeys(this.keyCodes);
         createAnimations(this, 'hero');
         createAnimations(this, 'slime');
     }

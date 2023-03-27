@@ -7,18 +7,7 @@ export namespace Keys {
         Standard = 1,
         Flipped = -1
     }
-    enum playerKeyCodes {
-        up = Phaser.Input.Keyboard.KeyCodes.W,
-        down = Phaser.Input.Keyboard.KeyCodes.S,
-        left = Phaser.Input.Keyboard.KeyCodes.A,
-        right = Phaser.Input.Keyboard.KeyCodes.D,
-        attackUp = Phaser.Input.Keyboard.KeyCodes.UP,
-        attackDown = Phaser.Input.Keyboard.KeyCodes.DOWN,
-        attackLeft = Phaser.Input.Keyboard.KeyCodes.LEFT,
-        attackRight = Phaser.Input.Keyboard.KeyCodes.RIGHT
-    };
 
-    export const keyCodes = playerKeyCodes;
 
     export function initKeys(keys: Types.playerKeyCodes): Types.PlayerKeys {
         let initializedKeys: Types.PlayerKeys = this.input.keyboard.addKeys(keys, true, true)
