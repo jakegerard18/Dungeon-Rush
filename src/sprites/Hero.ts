@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { Types } from '../Types';
+import { sceneEvents } from '../events/EventCenter';
 import { updateKeys } from '../KeysHelper';
 
 export namespace Hero {
@@ -98,31 +99,33 @@ export namespace Hero {
     }
 
 		private healthState = HealthState.Idle;
+		private health = 2;
 		private damageTime = 0;
-		private _health = 3;
 
-		get health() {
-				return this._health;
-		}
 
 		constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | number) {
 				super(scene, x, y, texture, frame);
 				this.anims.play('hero-idle');
 		}
 
+		getHealth() {
+				return this.health;
+		}
+
 		handleDamage(dir: Phaser.Math.Vector2) {
-				if(this.healthState === HealthState.Damage) {
-						return;
-				}
-				if (this._health < 0) {
-						this.healthState = HealthState.Dead;
-				} else {
-						this.setVelocity(dir.x, dir.y);
-						this.setTint(0xff0000);
-						this.healthState = HealthState.Damage;
-						this.damageTime = 0;
-						--this._health
-				}
+      sceneEvents.emit('player-health-changed', this.health);
+			if(this.healthState === HealthState.Damage) {
+					return;
+			}
+			if (this.health < 0) {
+					this.healthState = HealthState.Dead;
+			} else {
+					this.setVelocity(dir.x, dir.y);
+					this.setTint(0xff0000);
+					this.healthState = HealthState.Damage;
+					this.damageTime = 0;
+					--this.health
+			}
 		}
 
 		preUpdate(t: number, dt: number) {
@@ -139,19 +142,12 @@ export namespace Hero {
 						}
 						break;
 				}
-
-        switch (this.state) {
-        case Types.SpriteState.Attacking:
-          console.log('Attacking');
-        case Types.SpriteState.Vulnerable:
-          console.log('Vulnerable');
-        }
 		}
 
 		update(keys) {
 				if(this.healthState === HealthState.Damage
-					|| this.healthState === HealthState.Dead) {
-						return;
+					 || this.healthState === HealthState.Dead) {
+				  return;
 				}
 				updateKeys(keys, this, AnimationKeys, this.bodyWidths, this.bodyHeights, BodyOffsetX, BodyOffsetY, VelocityX, VelocityY);
 		}
