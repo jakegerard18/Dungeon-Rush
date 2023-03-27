@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-import { sceneEvents } from './events/EventCenter';
+import { Types } from './Types'
 import { Hero } from './sprites/Hero';
 import Slime from './sprites/Slime';
 
@@ -9,7 +9,11 @@ export function handleHeroSlimeCollision(obj1: Phaser.GameObjects.GameObject, ob
     const dx = hero.x - slime.x;
     const dy = hero.y - slime.y;
     const dir = new Phaser.Math.Vector2(dx, dy).normalize().scale(200);
-    hero.handleDamage(dir);
-    sceneEvents.emit('player-health-changed', hero.health);
+    switch(hero.state) {
+    case Types.SpriteState.Attacking:
+        slime.handleDamage(dir);
+    case Types.SpriteState.Vulnerable:
+        hero.handleDamage(dir);
+    }
 }
 
