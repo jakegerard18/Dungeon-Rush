@@ -2,34 +2,23 @@ import Phaser from 'phaser';
 import { debugDraw } from '../utils/debug';
 import {createAnimations} from '../Animations';
 import { addSprite } from '../SpriteHelper';
+import { Keys } from '../Keys';
 import { handleHeroSlimeCollision } from '../Collisions';
 import Slime from '../sprites/Slime';
 import '../sprites/Hero'
 import { Hero } from '../sprites/Hero';
+import { Types } from '../Types';
 
 export default class Game extends Phaser.Scene {
     private hero!: Hero.HeroClass;
-    private movementKeys = {
-      'up': Phaser.Input.Keyboard.KeyCodes.W,
-      'down': Phaser.Input.Keyboard.KeyCodes.S,
-      'left': Phaser.Input.Keyboard.KeyCodes.A,
-      'right': Phaser.Input.Keyboard.KeyCodes.D
-    };
-    private attackKeys = {
-      'attackUp': Phaser.Input.Keyboard.KeyCodes.UP,
-      'attackDown': Phaser.Input.Keyboard.KeyCodes.DOWN,
-      'attackLeft': Phaser.Input.Keyboard.KeyCodes.LEFT,
-      'attackRight': Phaser.Input.Keyboard.KeyCodes.RIGHT
-    };
-    private keys = { ...this.movementKeys, ...this.attackKeys };
-    private initializedKeys;
+    private keys: Types.PlayerKeys;
 
     constructor() {
         super('game');
     }
 
     preload() {
-        this.initializedKeys = this.input.keyboard.addKeys(this.keys);
+        this.keys = Keys.initKeys(Keys.keyCodes);
         createAnimations(this, 'hero');
         createAnimations(this, 'slime');
     }
@@ -62,9 +51,9 @@ export default class Game extends Phaser.Scene {
 
 
 
-    update(t: number, dt: number) {
+    update() {
         if (this.hero) {
-            this.hero.update(this.initializedKeys);
+            this.hero.update(this.keys);
         }
     }
 }
