@@ -50,7 +50,7 @@ export default class Game extends Phaser.Scene {
                 slimeGo.body.setSize(slimeGo.width * 0.3, slimeGo.height * 0.3);
             }
         })
-        // slimes.get(80, 100, 'slime');
+        slimes.get(80, 100, 'slime');
 
         wallLayer.setCollisionByProperty({collides: true});
 
