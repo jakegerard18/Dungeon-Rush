@@ -6,7 +6,8 @@ export namespace Types {
         Vulnerable = 'vulnerable'
   }
 
-    export interface playerKeyCodes {
+    // Key codes to be defined for the player keys
+    export interface PlayerKeyCodes {
         up: number,
         down: number,
         left: number,
@@ -17,6 +18,7 @@ export namespace Types {
         attackRight: number
     };
 
+    // Keys to be used as player keys
     export interface PlayerKeys {
       up: Phaser.Input.Keyboard.Key,
       down: Phaser.Input.Keyboard.Key,

@@ -9,7 +9,7 @@ export namespace Keys {
     }
 
 
-    export function initKeys(keys: Types.playerKeyCodes): Types.PlayerKeys {
+    export function initKeys(keys: Types.PlayerKeyCodes): Types.PlayerKeys {
         let initializedKeys: Types.PlayerKeys = this.input.keyboard.addKeys(keys, true, true)
         return initializedKeys
     }
