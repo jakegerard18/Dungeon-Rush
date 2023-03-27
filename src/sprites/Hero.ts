@@ -1,7 +1,7 @@
 import Phaser from 'phaser';
 import { Types } from '../Types';
 import { sceneEvents } from '../events/EventCenter';
-import { updateKeys } from '../KeysHelper';
+import { Keys } from '../Keys';
 
 export namespace Hero {
   export const SPRITE_KEY = 'hero';
@@ -144,12 +144,12 @@ export namespace Hero {
 				}
 		}
 
-		update(keys) {
-				if(this.healthState === HealthState.Damage
-					 || this.healthState === HealthState.Dead) {
+		update(keys: Types.PlayerKeys) {
+				if(this.healthState === HealthState.Damage || this.healthState === HealthState.Dead) {
 				  return;
 				}
-				updateKeys(keys, this, AnimationKeys, this.bodyWidths, this.bodyHeights, BodyOffsetX, BodyOffsetY, VelocityX, VelocityY);
+
+				Keys.updateKeys(keys, this, AnimationKeys, this.bodyWidths, this.bodyHeights, BodyOffsetX, BodyOffsetY, VelocityX, VelocityY);
 		}
 	}
 }
