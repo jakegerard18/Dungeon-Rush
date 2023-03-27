@@ -34,6 +34,12 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
         })
     }
 
+    handleDamage(dir: Phaser.Math.Vector2) {
+        this.setVelocity(dir.x, dir.y);
+        this.setTint(0xff0000);
+
+    }
+
     destroy(fromScene?: boolean) {
         this.moveEvent.destroy();
         super.destroy(fromScene);
@@ -46,8 +52,6 @@ export default class Slime extends Phaser.Physics.Arcade.Sprite {
 
         this.direction = randomDirection(this.direction);
     }
-
-
 
     preUpdate(time: number, delta: number): void {
         super.preUpdate(time, delta);
