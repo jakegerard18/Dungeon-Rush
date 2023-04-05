@@ -11,7 +11,7 @@ import { Types } from '../Types';
 
 export default class Game extends Phaser.Scene {
     private hero!: Hero.HeroClass;
-    private keys: Types.PlayerKeys;
+    private keys;
     private keyCodes = {
         up: Phaser.Input.Keyboard.KeyCodes.W,
         down: Phaser.Input.Keyboard.KeyCodes.S,
@@ -28,7 +28,7 @@ export default class Game extends Phaser.Scene {
     }
 
     preload() {
-        this.keys = Keys.initKeys(this.keyCodes);
+        this.keys = Keys.initKeys(this, this.keyCodes);
         createAnimations(this, 'hero');
         createAnimations(this, 'slime');
     }
