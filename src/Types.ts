@@ -27,7 +27,7 @@ export namespace Types {
       attackUp: Phaser.Input.Keyboard.Key,
       attackDown: Phaser.Input.Keyboard.Key,
       attackLeft: Phaser.Input.Keyboard.Key,
-      attackRight:  Phaser.Input.Keyboard.Key,
+      attackRight:  Phaser.Input.Keyboard.Key
     }
 
    export interface MovementState {
