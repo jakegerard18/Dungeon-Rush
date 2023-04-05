@@ -7,12 +7,6 @@ export namespace Hero {
   export const SPRITE_KEY = 'hero';
   export const BODY_SIZE_ADJUSTMENT = 0.3;
 
-  export enum HealthState {
-    Idle,
-    Damage,
-    Dead
-  };
-
   export enum AnimationKeys {
     MovingLeft = 'hero-walk-left',
     MovingRight = 'hero-walk-right',
@@ -98,7 +92,7 @@ export namespace Hero {
       Idle: this.height * BODY_SIZE_ADJUSTMENT
     }
 
-		private healthState = HealthState.Idle;
+		private healthState = Types.SpriteState.Idle;
 		private health = 2;
 		private damageTime = 0;
 
@@ -114,15 +108,15 @@ export namespace Hero {
 
 		handleDamage(dir: Phaser.Math.Vector2) {
       sceneEvents.emit('player-health-changed', this.health);
-			if(this.healthState === HealthState.Damage) {
+			if(this.healthState === Types.SpriteState.Damaged) {
 					return;
 			}
 			if (this.health < 0) {
-					this.healthState = HealthState.Dead;
+					this.healthState = Types.SpriteState.Dead;
 			} else {
 					this.setVelocity(dir.x, dir.y);
 					this.setTint(0xff0000);
-					this.healthState = HealthState.Damage;
+					this.healthState = Types.SpriteState.Damaged;
 					this.damageTime = 0;
 					--this.health
 			}
@@ -131,21 +125,24 @@ export namespace Hero {
 		preUpdate(t: number, dt: number) {
 				super.preUpdate(t, dt);
 				switch (this.healthState) {
-				case HealthState.Idle:
-						break;
-				case HealthState.Damage:
+				case Types.SpriteState.Idle:
+				    break;
+				case Types.SpriteState.Damaged:
 						this.damageTime += dt;
 						if (this.damageTime >= 250) {
-								this.healthState = HealthState.Idle;
+								this.healthState = Types.SpriteState.Idle;
 								this.setTint(0xffffff);
 								this.damageTime = 0;
 						}
 						break;
+          case Types.SpriteState.Dead:
+            // Play death animation
+          break;
 				}
 		}
 
 		update(keys: Types.PlayerKeys) {
-				if(this.healthState === HealthState.Damage || this.healthState === HealthState.Dead) {
+				if(this.healthState === Types.SpriteState.Damaged || this.healthState === Types.SpriteState.Dead) {
 				  return;
 				}
 
