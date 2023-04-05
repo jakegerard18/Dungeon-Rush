@@ -2,8 +2,11 @@ import Phaser from "phaser"
 export namespace Types {
 
   export enum SpriteState {
-        Attacking = 'attacking',
-        Vulnerable = 'vulnerable'
+      Attacking = 'attacking',
+      Vulnerable = 'vulnerable',
+      Idle = 'idle',
+      Damaged = 'damaged',
+      Dead = 'dead'
   }
 
     // Key codes to be defined for the player keys
