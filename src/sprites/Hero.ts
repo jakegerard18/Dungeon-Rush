@@ -17,7 +17,7 @@ export namespace Hero {
     AttackingUp = 'hero-attack-up',
     AttackingDown = 'hero-attack-down',
     Idle = 'hero-idle'
-}
+  }
 
   export enum BodyOffsetX {
     MovingLeft = 30.8,
@@ -96,59 +96,58 @@ export namespace Hero {
 		private health = 2;
 		private damageTime = 0;
 
-
 		constructor(scene: Phaser.Scene, x: number, y: number) {
-				super(scene, x, y, Hero.KEY);
-				this.anims.play('hero-idle');
-        scene.add.existing(this);
-        scene.physics.add.existing(this);
+      super(scene, x, y, Hero.KEY);
+      this.anims.play('hero-idle');
+      scene.add.existing(this);
+      scene.physics.add.existing(this);
 		}
 
 		getHealth() {
-				return this.health;
+      return this.health;
 		}
 
 		handleDamage(dir: Phaser.Math.Vector2) {
       sceneEvents.emit('player-health-changed', this.health);
 			if(this.healthState === Types.SpriteState.Damaged) {
-					return;
+        return;
 			}
 			if (this.health < 0) {
-					this.healthState = Types.SpriteState.Dead;
+        this.healthState = Types.SpriteState.Dead;
 			} else {
-					this.setVelocity(dir.x, dir.y);
-					this.setTint(0xff0000);
-					this.healthState = Types.SpriteState.Damaged;
-					this.damageTime = 0;
-					--this.health
+        this.setVelocity(dir.x, dir.y);
+        this.setTint(0xff0000);
+        this.healthState = Types.SpriteState.Damaged;
+        this.damageTime = 0;
+        --this.health
 			}
 		}
 
 		preUpdate(t: number, dt: number) {
-				super.preUpdate(t, dt);
-				switch (this.healthState) {
-				case Types.SpriteState.Idle:
-				    break;
-				case Types.SpriteState.Damaged:
-						this.damageTime += dt;
-						if (this.damageTime >= 250) {
-								this.healthState = Types.SpriteState.Idle;
-								this.setTint(0xffffff);
-								this.damageTime = 0;
-						}
-						break;
-          case Types.SpriteState.Dead:
-            // Play death animation
+      super.preUpdate(t, dt);
+      switch (this.healthState) {
+      case Types.SpriteState.Idle:
           break;
-				}
+      case Types.SpriteState.Damaged:
+          this.damageTime += dt;
+          if (this.damageTime >= 250) {
+              this.healthState = Types.SpriteState.Idle;
+              this.setTint(0xffffff);
+              this.damageTime = 0;
+          }
+          break;
+        case Types.SpriteState.Dead:
+          // Play death animation
+        break;
+      }
 		}
 
 		update(keys: Types.PlayerKeys) {
-				if(this.healthState === Types.SpriteState.Damaged || this.healthState === Types.SpriteState.Dead) {
-				  return;
-				}
+      if(this.healthState === Types.SpriteState.Damaged || this.healthState === Types.SpriteState.Dead) {
+        return;
+      }
 
-				Keys.updateKeys(keys, this, AnimationKeys, this.bodyWidths, this.bodyHeights, BodyOffsetX, BodyOffsetY, VelocityX, VelocityY);
+      Keys.updateKeys(keys, this, AnimationKeys, this.bodyWidths, this.bodyHeights, BodyOffsetX, BodyOffsetY, VelocityX, VelocityY);
 		}
 	}
 }
