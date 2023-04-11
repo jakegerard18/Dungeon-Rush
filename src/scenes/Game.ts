@@ -1,7 +1,6 @@
 import Phaser from 'phaser';
 import { debugDraw } from '../utils/debug';
 import {createAnimations} from '../Animations';
-import { addSprite } from '../SpriteHelper';
 import { Keys } from '../Keys';
 import { handleHeroSlimeCollision } from '../Collisions';
 import Slime from '../sprites/Slime';
@@ -40,7 +39,7 @@ export default class Game extends Phaser.Scene {
         const floorLayer = dungeon.createLayer('Floor', tileset);
         const wallLayer = dungeon.createLayer('Walls', tileset);
 
-        this.hero = this.add.hero(60, 100, 'hero');
+        this.hero = new Hero.HeroClass(this, 60, 100);
         const slimes = this.physics.add.group({
             classType: Slime,
             createCallback: (go) => {

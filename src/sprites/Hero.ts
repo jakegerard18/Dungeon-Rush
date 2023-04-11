@@ -4,7 +4,7 @@ import { sceneEvents } from '../events/EventCenter';
 import { Keys } from '../Keys';
 
 export namespace Hero {
-  export const SPRITE_KEY = 'hero';
+  export const KEY = 'hero';
   export const BODY_SIZE_ADJUSTMENT = 0.3;
 
   export enum AnimationKeys {
@@ -97,9 +97,11 @@ export namespace Hero {
 		private damageTime = 0;
 
 
-		constructor(scene: Phaser.Scene, x: number, y: number, texture: string, frame?: string | number) {
-				super(scene, x, y, texture, frame);
+		constructor(scene: Phaser.Scene, x: number, y: number) {
+				super(scene, x, y, Hero.KEY);
 				this.anims.play('hero-idle');
+        scene.add.existing(this);
+        scene.physics.add.existing(this);
 		}
 
 		getHealth() {
@@ -149,23 +151,4 @@ export namespace Hero {
 				Keys.updateKeys(keys, this, AnimationKeys, this.bodyWidths, this.bodyHeights, BodyOffsetX, BodyOffsetY, VelocityX, VelocityY);
 		}
 	}
-}
-
-declare global {
-	namespace Phaser.GameObjects {
-			interface GameObjectFactory {
-					hero(x: number, y: number, texture: string, frame?: string | number): Hero.HeroClass;
-			}
-	}
-}
-
-Phaser.GameObjects.GameObjectFactory.register('hero', registerHeroCallback);
-
-function registerHeroCallback(this: Phaser.GameObjects.GameObjectFactory, x: number, y: number, texture: string, frame?: string | number) {
-	let sprite = new Hero.HeroClass(this.scene, x, y, texture, frame);
-	this.displayList.add(sprite);
-	this.updateList.add(sprite);
-	this.scene.physics.world.enableBody(sprite, Phaser.Physics.Arcade.DYNAMIC_BODY);
-	sprite.body.setSize(sprite.width * Hero.BODY_SIZE_ADJUSTMENT, sprite.height * Hero.BODY_SIZE_ADJUSTMENT);
-	return sprite;
 }
