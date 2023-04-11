@@ -98,10 +98,14 @@ export namespace Hero {
 
 		constructor(scene: Phaser.Scene, x: number, y: number) {
       super(scene, x, y, Hero.KEY);
+      this.initHero(scene);
+		}
+
+    initHero(scene: Phaser.Scene) {
       this.anims.play('hero-idle');
       scene.add.existing(this);
       scene.physics.add.existing(this);
-		}
+    }
 
 		getHealth() {
       return this.health;
@@ -127,17 +131,17 @@ export namespace Hero {
       super.preUpdate(t, dt);
       switch (this.healthState) {
       case Types.SpriteState.Idle:
-          break;
+        break;
       case Types.SpriteState.Damaged:
-          this.damageTime += dt;
-          if (this.damageTime >= 250) {
-              this.healthState = Types.SpriteState.Idle;
-              this.setTint(0xffffff);
-              this.damageTime = 0;
-          }
-          break;
-        case Types.SpriteState.Dead:
-          // Play death animation
+        this.damageTime += dt;
+        if (this.damageTime >= 250) {
+            this.healthState = Types.SpriteState.Idle;
+            this.setTint(0xffffff);
+            this.damageTime = 0;
+        }
+        break;
+      case Types.SpriteState.Dead:
+        // Play death animation
         break;
       }
 		}
