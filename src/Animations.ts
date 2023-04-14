@@ -33,12 +33,7 @@ export function createAnimations(scene: Phaser.Scene, sprite: string) {
         repeat: -1,
         frameRate: 10
     });
-    scene.anims.create({
-        key: `${sprite}-walk-left`,
-        frames: scene.anims.generateFrameNames(sprite, {prefix: `${sprite}-walk-right-`, start: 0, end: 3 }),
-        repeat: -1,
-        frameRate: 10
-    });
+
     // Attack animations
     scene.anims.create({
         key: `${sprite}-attack-down`,
@@ -58,11 +53,6 @@ export function createAnimations(scene: Phaser.Scene, sprite: string) {
         repeat: -1,
         frameRate: 20
     });
-    scene.anims.create({
-        key: `${sprite}-attack-left`,
-        frames: scene.anims.generateFrameNames(sprite, {prefix: `${sprite}-attack-right-`, start: 0, end: 3 }),
-        repeat: -1,
-        frameRate: 20
-    });
+
     // Damage animations
 }

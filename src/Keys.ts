@@ -20,7 +20,7 @@ export namespace Keys {
         // Attack keys
         if (keys.attackLeft.isDown) {
             sprite = sprite.setState(Types.SpriteState.Attacking);
-            keyAction(sprite, animationKeys.AttackingLeft, VerticalAxis.Flipped, bodyWidth.AttackingLeft, bodyHeight.AttackingLeft,
+            keyAction(sprite, animationKeys.AttackingRight, VerticalAxis.Flipped, bodyWidth.AttackingLeft, bodyHeight.AttackingLeft,
                     bodyOffsetX.AttackingLeft, bodyOffsetY.AttackingLeft, velocityX.AttackingLeft, velocityY.AttackingLeft);
 
         } else if (keys.attackRight.isDown) {
@@ -41,7 +41,7 @@ export namespace Keys {
         // Movement keys
         } else if (keys.left.isDown) {
             sprite.setState(Types.SpriteState.Vulnerable);
-            keyAction(sprite, animationKeys.MovingLeft, VerticalAxis.Flipped, bodyWidth.MovingLeft, bodyHeight.MovingLeft,
+            keyAction(sprite, animationKeys.MovingRight, VerticalAxis.Flipped, bodyWidth.MovingLeft, bodyHeight.MovingLeft,
                     bodyOffsetX.MovingLeft, bodyOffsetY.MovingLeft, velocityX.MovingLeft, velocityY.MovingLeft)
 
         } else if (keys.right.isDown) {

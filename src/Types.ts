@@ -46,11 +46,9 @@ export namespace Types {
     }
 
     export interface AnimationKeys {
-        MovingLeft: string,
         MovingRight: string,
         MovingUp: string,
         MovingDown: string,
-        AttackingLeft: string,
         AttackingRight: string,
         AttackingUp: string,
         AttackingDown: string,

@@ -3,13 +3,12 @@ import { debugDraw } from '../utils/debug';
 import {createAnimations} from '../Animations';
 import { Keys } from '../Keys';
 import { handleHeroSlimeCollision } from '../Collisions';
-import Slime from '../sprites/Slime';
-import '../sprites/Hero'
+import { Slime } from '../sprites/Slime';
 import { Hero } from '../sprites/Hero';
 import { Types } from '../Types';
 
 export default class Game extends Phaser.Scene {
-    private hero!: Hero.HeroClass;
+    private hero!: Hero;
     private keys;
     private keyCodes = {
       up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -39,7 +38,7 @@ export default class Game extends Phaser.Scene {
       const floorLayer = dungeon.createLayer('Floor', tileset);
       const wallLayer = dungeon.createLayer('Walls', tileset);
 
-      this.hero = new Hero.HeroClass(this, 60, 100);
+      this.hero = new Hero(this, 60, 100);
       let slime = new Slime(this, 100, 100);
 
       wallLayer.setCollisionByProperty({collides: true});
