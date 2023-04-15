@@ -9,6 +9,7 @@ import { Types } from '../Types';
 
 export default class Game extends Phaser.Scene {
     private hero!: Hero;
+    private slime: Slime;
     private keys;
     private keyCodes = {
       up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -39,19 +40,18 @@ export default class Game extends Phaser.Scene {
       const wallLayer = dungeon.createLayer('Walls', tileset);
 
       this.hero = new Hero(this, 60, 100);
-      let slime = new Slime(this, 100, 100);
+      this.slime = new Slime(this, 100, 100);
 
       wallLayer.setCollisionByProperty({collides: true});
 
       this.physics.add.collider(this.hero, wallLayer);
       this.cameras.main.startFollow(this.hero, true);
-      this.physics.add.collider(slime, wallLayer);
-      this.physics.add.collider(this.hero, slime, handleHeroSlimeCollision, undefined, this);
+      this.physics.add.collider(this.slime, wallLayer);
+      this.physics.add.collider(this.hero, this.slime, handleHeroSlimeCollision, undefined, this);
     }
 
     update() {
-      if (this.hero) {
-          this.hero.update(this.keys);
-      }
+      this.hero.update(this.keys);
+      // this.slime.update(this.keys);
     }
 }

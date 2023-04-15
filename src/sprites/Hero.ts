@@ -4,7 +4,7 @@ import { sceneEvents } from '../events/EventCenter';
 import { Keys } from '../Keys';
 
 export class Hero extends Phaser.Physics.Arcade.Sprite {
-  private bodyWidths = {
+  private adjustedWidths = {
     MovingLeft: this.width * Hero.BODY_SIZE_ADJUSTMENT,
     MovingRight: this.width * Hero.BODY_SIZE_ADJUSTMENT,
     MovingUp: this.width * Hero.BODY_SIZE_ADJUSTMENT,
@@ -16,7 +16,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
     Idle: this.width * Hero.BODY_SIZE_ADJUSTMENT
   }
 
-  private bodyHeights = {
+  private adjustedHeights = {
     MovingLeft: this.height * Hero.BODY_SIZE_ADJUSTMENT,
     MovingRight: this.height * Hero.BODY_SIZE_ADJUSTMENT,
     MovingUp: this.height * Hero.BODY_SIZE_ADJUSTMENT,
@@ -34,13 +34,14 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, Hero.KEY);
-    this.initHero(scene);
+    this.init(scene);
   }
 
-  initHero(scene: Phaser.Scene) {
+  init(scene: Phaser.Scene) {
     this.anims.play('hero-idle');
     scene.add.existing(this);
     scene.physics.add.existing(this);
+    this.body.setSize(this.body.width * Hero.BODY_SIZE_ADJUSTMENT, this.body.height * Hero.BODY_SIZE_ADJUSTMENT);
   }
 
   getHealth() {
@@ -87,7 +88,7 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
       return;
     }
 
-    Keys.updateKeys(keys, this, Hero.AnimationKeys, this.bodyWidths, this.bodyHeights, Hero.BodyOffsetX, Hero.BodyOffsetY, Hero.VelocityX, Hero.VelocityY);
+    Keys.updateKeys(keys, this, Hero.AnimationKeys, this.adjustedWidths, this.adjustedHeights, Hero.BodyOffsetX, Hero.BodyOffsetY, Hero.VelocityX, Hero.VelocityY);
   }
 }
 

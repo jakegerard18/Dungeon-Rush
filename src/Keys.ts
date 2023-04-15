@@ -68,10 +68,10 @@ export namespace Keys {
     }
 
     function keyAction(sprite: Phaser.Physics.Arcade.Sprite, animationKey: string,
-                    scaleX: number, bodyWidth: number, bodyHeight: number, bodyOffsetX: number,
+                    scaleX: number, width: number, height: number, bodyOffsetX: number,
                     bodyOffsetY: number, velocityX: number, velocityY: number) {
         sprite.scaleX = scaleX;
-        sprite.body.setSize(bodyWidth, bodyHeight);
+        sprite.body.setSize(width, height);
         sprite.body.offset.x = bodyOffsetX;
         sprite.body.offset.y = bodyOffsetY
         sprite.setVelocity(velocityX, velocityY);
