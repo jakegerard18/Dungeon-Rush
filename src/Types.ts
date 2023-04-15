@@ -1,6 +1,13 @@
 import Phaser from "phaser"
 export namespace Types {
 
+  export enum Direction {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT
+  }
+  
   export enum SpriteState {
       Attacking = 'attacking',
       Vulnerable = 'vulnerable',
