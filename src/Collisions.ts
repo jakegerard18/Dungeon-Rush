@@ -1,10 +1,10 @@
 import Phaser from 'phaser'
 import { Types } from './Types'
 import { Hero } from './sprites/Hero';
-import Slime from './sprites/Slime';
+import { Slime } from './sprites/Slime';
 
 export function handleHeroSlimeCollision(obj1: Phaser.GameObjects.GameObject, obj2: Phaser.GameObjects.GameObject) {
-    const hero = obj1 as Hero.HeroClass;
+    const hero = obj1 as Hero;
     const slime = obj2 as Slime;
     let dir;
     const dx = hero.x - slime.x;

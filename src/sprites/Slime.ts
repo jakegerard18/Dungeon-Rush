@@ -63,6 +63,7 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
     } else if (this.health < 0) {
       this.healthState = Types.SpriteState.Dead;
     } else {
+      this.anims.play(this.animationKeys.DamagedDown);
       this.healthState = Types.SpriteState.Damaged;
       this.setVelocity(dir.x, dir.y);
       this.setTint(0xff0000);
@@ -78,33 +79,33 @@ export class Slime extends Phaser.Physics.Arcade.Sprite {
     if(this.healthState === Types.SpriteState.Idle && this.movementTime >= this.MAX_MOVEMENT_TIME) {
       switch (this.direction) {
         case Types.Direction.UP:
-            this.scaleX = 1;
-            this.body.offset.x = Slime.BodyOffsetX.MovingUp;
-            this.body.offset.y = Slime.BodyOffsetY.MovingUp;
-            this.setVelocity(0, -this.velocity);
-            this.anims.play(this.animationKeys.MovingUp);
-            break;
+          this.scaleX = 1;
+          this.body.offset.x = Slime.BodyOffsetX.MovingUp;
+          this.body.offset.y = Slime.BodyOffsetY.MovingUp;
+          this.setVelocity(0, -this.velocity);
+          this.anims.play(this.animationKeys.MovingUp);
+          break;
         case Types.Direction.DOWN:
-            this.scaleX = 1;
-            this.body.offset.x = Slime.BodyOffsetX.MovingDown;
-            this.body.offset.y = Slime.BodyOffsetY.MovingDown;
-            this.setVelocity(0, this.velocity);
-            this.anims.play(this.animationKeys.MovingDown);
-            break;
+          this.scaleX = 1;
+          this.body.offset.x = Slime.BodyOffsetX.MovingDown;
+          this.body.offset.y = Slime.BodyOffsetY.MovingDown;
+          this.setVelocity(0, this.velocity);
+          this.anims.play(this.animationKeys.MovingDown);
+          break;
         case Types.Direction.LEFT:
-            this.scaleX = -1;
-            this.body.offset.x = Slime.BodyOffsetX.MovingLeft;
-            this.body.offset.y = Slime.BodyOffsetY.MovingLeft;
-            this.setVelocity(-this.velocity, 0);
-            this.anims.play(this.animationKeys.MovingRight);   // This is flipped
-            break;
+          this.scaleX = -1;
+          this.body.offset.x = Slime.BodyOffsetX.MovingLeft;
+          this.body.offset.y = Slime.BodyOffsetY.MovingLeft;
+          this.setVelocity(-this.velocity, 0);
+          this.anims.play(this.animationKeys.MovingRight);   // This is flipped
+          break;
         case Types.Direction.RIGHT:
-            this.scaleX = 1;
-            this.body.offset.x = Slime.BodyOffsetX.MovingRight;
-            this.body.offset.y = Slime.BodyOffsetY.MovingRight;
-            this.setVelocity(this.velocity, 0);
-            this.anims.play(this.animationKeys.MovingRight);
-            break;
+          this.scaleX = 1;
+          this.body.offset.x = Slime.BodyOffsetX.MovingRight;
+          this.body.offset.y = Slime.BodyOffsetY.MovingRight;
+          this.setVelocity(this.velocity, 0);
+          this.anims.play(this.animationKeys.MovingRight);
+          break;
       }
       this.movementTime = 0;
     } else if (this.healthState === Types.SpriteState.Damaged) {
@@ -143,7 +144,10 @@ export namespace Slime {
     MovingDown = 'slime-walk-down',
     AttackingRight = 'slime-attack-right',
     AttackingUp = 'slime-attack-up',
-    AttackingDown = 'slime-attack-down'
+    AttackingDown = 'slime-attack-down',
+    DamagedRight = 'slime-damage-right',
+    DamagedUp = 'slime-damage-up',
+    DamagedDown = 'slime-damage-down'
   }
 
   export enum BodyOffsetX {
