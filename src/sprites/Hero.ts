@@ -2,46 +2,97 @@ import Phaser from 'phaser';
 import { Types } from '../Types';
 import { sceneEvents } from '../events/EventCenter';
 import { Keys } from '../Keys';
+import { Sprite } from './Sprite';
 
-export class Hero extends Phaser.Physics.Arcade.Sprite {
-  private adjustedWidths = {
-    MovingLeft: this.width * Hero.BODY_SIZE_ADJUSTMENT,
-    MovingRight: this.width * Hero.BODY_SIZE_ADJUSTMENT,
-    MovingUp: this.width * Hero.BODY_SIZE_ADJUSTMENT,
-    MovingDown: this.width * Hero.BODY_SIZE_ADJUSTMENT,
-    AttackingLeft: (this.width * Hero.BODY_SIZE_ADJUSTMENT) + 16,
-    AttackingRight: (this.width * Hero.BODY_SIZE_ADJUSTMENT) + 16,
-    AttackingUp: this.width * Hero.BODY_SIZE_ADJUSTMENT,
-    AttackingDown: this.width * Hero.BODY_SIZE_ADJUSTMENT,
-    Idle: this.width * Hero.BODY_SIZE_ADJUSTMENT
+export class Hero extends Sprite {
+  public BODY_SIZE_ADJUSTMENT = 0.3;
+  public animationKeys: Types.AnimationKeys = {
+    Idle: 'hero-idle',
+    MovingRight: 'hero-walk-right',
+    MovingUp: 'hero-walk-up',
+    MovingDown: 'hero-walk-down',
+    AttackingRight: 'hero-attack-right',
+    AttackingUp: 'hero-attack-up',
+    AttackingDown: 'hero-attack-down',
+    DamagedRight: 'hero-damaged-right',
+    DamagedUp: 'hero-damaged-up',
+    DamagedDown: 'hero-damaged-down'
   }
 
-  private adjustedHeights = {
-    MovingLeft: this.height * Hero.BODY_SIZE_ADJUSTMENT,
-    MovingRight: this.height * Hero.BODY_SIZE_ADJUSTMENT,
-    MovingUp: this.height * Hero.BODY_SIZE_ADJUSTMENT,
-    MovingDown: this.height * Hero.BODY_SIZE_ADJUSTMENT,
-    AttackingLeft: this.height * Hero.BODY_SIZE_ADJUSTMENT,
-    AttackingRight: this.height * Hero.BODY_SIZE_ADJUSTMENT,
-    AttackingUp: (this.height * Hero.BODY_SIZE_ADJUSTMENT) + 16,
-    AttackingDown: (this.height * Hero.BODY_SIZE_ADJUSTMENT) + 12,
-    Idle: this.height * Hero.BODY_SIZE_ADJUSTMENT
+  public bodyOffsetX: Types.MovementState = {
+    MovingLeft: 30.8,
+    MovingRight: 16.8,
+    MovingUp: 16.8,
+    MovingDown: 16.8,
+    AttackingLeft: 46.8,
+    AttackingRight: 16.8,
+    AttackingUp: 16.8,
+    AttackingDown: 16.8,
+    Idle: 16.8
+  };
+
+  public bodyOffsetY: Types.MovementState = {
+    MovingLeft: 16.8,
+    MovingRight: 16.8,
+    MovingUp : 16.8,
+    MovingDown: 16.8,
+    AttackingLeft: 16.8,
+    AttackingRight: 16.8,
+    AttackingUp: 2.8,
+    AttackingDown: 16.8,
+    Idle: 16.8
+  };
+
+  public velocityX: Types.MovementState = {
+    MovingLeft: -100,
+    MovingRight: 100,
+    MovingUp: 0,
+    MovingDown: 0,
+    AttackingLeft: 0,
+    AttackingRight: 0,
+    AttackingUp: 0,
+    AttackingDown: 0,
+    Idle: 0
   }
 
-  private healthState = Types.SpriteState.Idle;
-  private health = 2;
-  private damageTime = 0;
+  public velocityY: Types.MovementState = {
+    MovingLeft: 0,
+    MovingRight: 0,
+    MovingUp: -100,
+    MovingDown: 100,
+    AttackingLeft: 0,
+    AttackingRight: 0,
+    AttackingUp: 0,
+    AttackingDown: 0,
+    Idle: 0
+  }
+
+  public adjustedWidths = {
+    MovingLeft: this.width * this.BODY_SIZE_ADJUSTMENT,
+    MovingRight: this.width * this.BODY_SIZE_ADJUSTMENT,
+    MovingUp: this.width * this.BODY_SIZE_ADJUSTMENT,
+    MovingDown: this.width * this.BODY_SIZE_ADJUSTMENT,
+    AttackingLeft: (this.width * this.BODY_SIZE_ADJUSTMENT) + 16,
+    AttackingRight: (this.width * this.BODY_SIZE_ADJUSTMENT) + 16,
+    AttackingUp: this.width * this.BODY_SIZE_ADJUSTMENT,
+    AttackingDown: this.width * this.BODY_SIZE_ADJUSTMENT,
+    Idle: this.width * this.BODY_SIZE_ADJUSTMENT
+  }
+
+  public adjustedHeights = {
+    MovingLeft: this.height * this.BODY_SIZE_ADJUSTMENT,
+    MovingRight: this.height * this.BODY_SIZE_ADJUSTMENT,
+    MovingUp: this.height * this.BODY_SIZE_ADJUSTMENT,
+    MovingDown: this.height * this.BODY_SIZE_ADJUSTMENT,
+    AttackingLeft: this.height * this.BODY_SIZE_ADJUSTMENT,
+    AttackingRight: this.height * this.BODY_SIZE_ADJUSTMENT,
+    AttackingUp: (this.height * this.BODY_SIZE_ADJUSTMENT) + 16,
+    AttackingDown: (this.height * this.BODY_SIZE_ADJUSTMENT) + 12,
+    Idle: this.height * this.BODY_SIZE_ADJUSTMENT
+  }
 
   constructor(scene: Phaser.Scene, x: number, y: number) {
-    super(scene, x, y, Hero.KEY);
-    this.init(scene);
-  }
-
-  init(scene: Phaser.Scene) {
-    this.anims.play('hero-idle');
-    scene.add.existing(this);
-    scene.physics.add.existing(this);
-    this.body.setSize(this.body.width * Hero.BODY_SIZE_ADJUSTMENT, this.body.height * Hero.BODY_SIZE_ADJUSTMENT);
+    super(scene, x, y, 'hero');
   }
 
   getHealth() {
@@ -88,69 +139,6 @@ export class Hero extends Phaser.Physics.Arcade.Sprite {
       return;
     }
 
-    Keys.updateKeys(keys, this, Hero.AnimationKeys, this.adjustedWidths, this.adjustedHeights, Hero.BodyOffsetX, Hero.BodyOffsetY, Hero.VelocityX, Hero.VelocityY);
-  }
-}
-
-export namespace Hero {
-  export const KEY = 'hero';
-  export const BODY_SIZE_ADJUSTMENT = 0.3;
-
-  export enum AnimationKeys {
-    MovingRight = 'hero-walk-right',
-    MovingUp = 'hero-walk-up',
-    MovingDown = 'hero-walk-down',
-    AttackingRight = 'hero-attack-right',
-    AttackingUp = 'hero-attack-up',
-    AttackingDown = 'hero-attack-down',
-    Idle = 'hero-idle'
-  }
-
-  export enum BodyOffsetX {
-    MovingLeft = 30.8,
-    MovingRight = 16.8,
-    MovingUp = 16.8,
-    MovingDown = 16.8,
-    AttackingLeft = 46.8,
-    AttackingRight = 16.8,
-    AttackingUp = 16.8,
-    AttackingDown = 16.8,
-    Idle = 16.8
-  };
-
-  export enum BodyOffsetY {
-    MovingLeft = 16.8,
-    MovingRight = 16.8,
-    MovingUp = 16.8,
-    MovingDown = 16.8,
-    AttackingLeft = 16.8,
-    AttackingRight = 16.8,
-    AttackingUp = 2.8,
-    AttackingDown = 16.8,
-    Idle = 16.8
-  };
-
-  export enum VelocityX {
-    MovingLeft = -100,
-    MovingRight = 100,
-    MovingUp = 0,
-    MovingDown = 0,
-    AttackingLeft = 0,
-    AttackingRight = 0,
-    AttackingUp = 0,
-    AttackingDown = 0,
-    Idle = 0
-  }
-
-  export enum VelocityY {
-    MovingLeft = 0,
-    MovingRight = 0,
-    MovingUp = -100,
-    MovingDown = 100,
-    AttackingLeft = 0,
-    AttackingRight = 0,
-    AttackingUp = 0,
-    AttackingDown = 0,
-    Idle = 0
+    Keys.updateKeys(keys, this, this.animationKeys, this.adjustedWidths, this.adjustedHeights, this.bodyOffsetX, this.bodyOffsetY, this.velocityX, this.velocityY);
   }
 }

@@ -2,10 +2,9 @@ import Phaser from 'phaser';
 import { debugDraw } from '../utils/debug';
 import {createAnimations} from '../Animations';
 import { Keys } from '../Keys';
-import { handleHeroSlimeCollision } from '../Collisions';
+import { handleHeroEnemyCollision } from '../Collisions';
 import { Slime } from '../sprites/Slime';
 import { Hero } from '../sprites/Hero';
-import { Types } from '../Types';
 import { Bat } from '../sprites/Bat';
 
 export default class Game extends Phaser.Scene {
@@ -52,7 +51,8 @@ export default class Game extends Phaser.Scene {
       this.cameras.main.startFollow(this.hero, true);
       this.physics.add.collider(this.slime, wallLayer);
       this.physics.add.collider(this.bat, wallLayer);
-      this.physics.add.collider(this.hero, this.slime, handleHeroSlimeCollision, undefined, this);
+      this.physics.add.collider(this.hero, this.slime, handleHeroEnemyCollision, undefined, this);
+      this.physics.add.collider(this.hero, this.bat, handleHeroEnemyCollision, undefined, this);
     }
 
     update() {

@@ -53,12 +53,15 @@ export namespace Types {
   }
 
   export interface AnimationKeys {
+    Idle: string
     MovingRight: string,
     MovingUp: string,
     MovingDown: string,
     AttackingRight: string,
     AttackingUp: string,
     AttackingDown: string,
-    Idle: string
+    DamagedRight: string,
+    DamagedUp: string,
+    DamagedDown: string
   }
 }
