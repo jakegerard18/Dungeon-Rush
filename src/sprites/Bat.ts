@@ -3,7 +3,6 @@ import { Types } from '../Types';
 import { Enemy } from './Enemy';
 
 export class Bat extends Enemy {
-
   public animationKeys: Types.AnimationKeys = {
     Idle: 'bat-idle',
     MovingRight: 'bat-walk-right',

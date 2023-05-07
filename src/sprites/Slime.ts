@@ -4,7 +4,6 @@ import { Keys } from '../Keys';
 import { Enemy } from './Enemy';
 
 export class Slime extends Enemy {
-
   public animationKeys: Types.AnimationKeys = {
     Idle: 'slime-idle',
     MovingRight: 'slime-walk-right',
