@@ -73,7 +73,7 @@ export default class Game extends Phaser.Scene {
       wallLayer.setCollisionByProperty({collides: true});
 
       this.cameras.main.startFollow(this.hero, true);
-      
+
       this.physics.add.collider(this.hero, wallLayer);
       this.physics.add.collider(this.slime, wallLayer);
       this.physics.add.collider(this.bat, wallLayer);
