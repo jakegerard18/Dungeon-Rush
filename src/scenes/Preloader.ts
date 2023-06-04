@@ -20,6 +20,24 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('heart-empty', 'sprites/heart_empty.png');
         this.load.image('heart-half', 'sprites/heart_half.png');
         this.load.image('heart-full', 'sprites/heart_full.png');
+
+        // Dungeons:
+        this.load.image('N', 'dungeons/n_dungeon.png');
+
+        // this.load.image('NSEW', 'dungeons/nsew_dungeon.png');
+        // this.load.image('NSE', ' dungeons/nes_dungeon.png');
+        // this.load.image('NSW', 'dungeons/nws_dungeon.png');
+        // this.load.image('NEW', 'dungeons/new_dungeon.png');
+        // this.load.image('SEW', 'dungeons/sew_dungeon.png');
+        // this.load.image('NE', 'dungeons/ne_dungeon.png');
+        // this.load.image('NW', 'dungeons/nw_dungeon.png');
+        // this.load.image('NS', 'dungeons/ns_dungeon.png');
+        // this.load.image('SE', 'dungeons/se_dungeon.png');
+        // this.load.image('SW', 'dungeons/sw_dungeon.png');
+        // this.load.image('EW', 'dungeons/ew_dungeon.png');
+        // this.load.image('S', 'dungeons/s_dungeon.png');
+        // this.load.image('E', 'dungeons/e_dungeon.png');
+        // this.load.image('W', 'dungeons/w_dungeon.png');
     }
 
     create() {
