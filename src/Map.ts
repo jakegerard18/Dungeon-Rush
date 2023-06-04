@@ -6,7 +6,7 @@ export namespace Map {
   var W = 1600;
   var H = 1000;
   var started = false;
-  var images = []  ;
+  var images;
   var floorplan;
   var floorplanCount;
   var cellQueue;
@@ -15,39 +15,35 @@ export namespace Map {
   var minrooms = 7;
 
   export function initMap(scene: Phaser.Scene) {
-    loadRooms(scene);
     started = true;
     images = [];
-    // images.forEach(image => {
-    //     image.destroy();
-    // })
     floorplan = [];
-    for(var i =0; i<=100; i++) floorplan[i] = 0;
+    for(var i = 0; i <= 100; i++) floorplan[i] = 0;
     floorplanCount = 0;
     cellQueue = [];
     endrooms = [];
-    visit(this, 45);
+    visit(45);
+    for(let i = 0; i < 100; i++) {
+      if(started){
+        if(cellQueue.length > 0)
+        {
+          var cell = cellQueue.shift();
+          var x = cell % 10;
+          var created = false;
+          if(x > 1) created = created || visit(cell - 1);
+          if(x < 9) created = created || visit(cell + 1);
+          if(cell > 20) created = created || visit(cell - 10);
+          if(cell < 70) created = created || visit(cell + 10);
+          if(!created) {
+            endrooms.push(i);
+          }
+        }
+        apply_dungeon_maps(scene, floorplan)
+      }
+    }
   }
 
-  function loadRooms(scene: Phaser.Scene) {
-    this.load.image('NSEW', 'dungeons/nsew_dungeon.png');
-    this.load.image('NSE', ' dungeons/nes_dungeon.png');
-    this.load.image('NSW', 'dungeons/nws_dungeon.png');
-    this.load.image('NEW', 'dungeons/new_dungeon.png');
-    this.load.image('SEW', 'dungeons/sew_dungeon.png');
-    this.load.image('NE', 'dungeons/ne_dungeon.png');
-    this.load.image('NW', 'dungeons/nw_dungeon.png');
-    this.load.image('NS', 'dungeons/ns_dungeon.png');
-    this.load.image('SE', 'dungeons/se_dungeon.png');
-    this.load.image('SW', 'dungeons/sw_dungeon.png');
-    this.load.image('EW', 'dungeons/ew_dungeon.png');
-    this.load.image('N', 'dungeons/n_dungeon.png');
-    this.load.image('S', 'dungeons/s_dungeon.png');
-    this.load.image('E', 'dungeons/e_dungeon.png');
-    this.load.image('W', 'dungeons/w_dungeon.png');
-  }
-
-  function visit(scene: Phaser.Scene, i) {
+  function visit(i) {
     if(floorplan[i])
         return false;
 
@@ -91,14 +87,15 @@ export namespace Map {
         neighbors.push('E');
     if (floorplan[cell-1])
         neighbors.push('W');
-    console.log(neighbors)
-    return neighbors.toString()
+
+    let result = neighbors.toString().replace(',','');
+    return result;
   }
 
   function img(scene, i, name) {
     var x = i % 10;
     var y = (i - x) / 10;
-    var img = scene.load.image(W/2 + cellw * (x - 5), H/2 + cellh * (y - 4), name);
+    var img = scene.add.image(W/2 + cellw * (x - 5), H/2 + cellh * (y - 4), name);
     images.push(img);
     return img;
   }
