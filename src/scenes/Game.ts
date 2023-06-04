@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import { debugDraw } from '../utils/debug';
 import {createAnimations} from '../Animations';
+import { Map } from '../Map';
 import { Keys } from '../Keys';
 import { handleHeroEnemyCollision } from '../Collisions';
 import { Slime } from '../sprites/Slime';
@@ -54,13 +55,10 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
+      // Map.initMap(this)
       this.scene.run('ui');
-      const dungeon = this.make.tilemap({ key: 'n_dungeon' });
-      const tileset = dungeon.addTilesetImage('dungeon_tiles', 'tiles');
-      const floorLayer = dungeon.createLayer('Floor', tileset);
-      const wallLayer = dungeon.createLayer('Walls', tileset);
-
-      this.hero = new Hero(this, 60, 100);
+      this.add.image(500,500,'N')
+      this.hero = new Hero(this, 500, 500);
       this.slime = new Slime(this, 100, 100);
       this.bat = new Bat(this, 100, 100);
       this.rat = new Rat(this, 100, 100);
@@ -70,19 +68,23 @@ export default class Game extends Phaser.Scene {
       this.spider = new Spider(this, 100, 100);
       this.troll = new Troll(this, 100, 100);
 
-      wallLayer.setCollisionByProperty({collides: true});
+    // let dungeon = this.make.tilemap({key: 'N'})
+    // const tileset = dungeon.addTilesetImage('dungeon_tiles', 'tiles');
+    // const floorLayer = dungeon.createLayer('Floor', tileset);
+    // const wallLayer = dungeon.createLayer('Walls', tileset);
 
       this.cameras.main.startFollow(this.hero, true);
 
-      this.physics.add.collider(this.hero, wallLayer);
-      this.physics.add.collider(this.slime, wallLayer);
-      this.physics.add.collider(this.bat, wallLayer);
-      this.physics.add.collider(this.rat, wallLayer);
-      this.physics.add.collider(this.orc, wallLayer);
-      this.physics.add.collider(this.goblin, wallLayer);
-      this.physics.add.collider(this.sniper, wallLayer);
-      this.physics.add.collider(this.spider, wallLayer);
-      this.physics.add.collider(this.troll, wallLayer);
+      // wallLayer.setCollisionByProperty({collides: true});
+      // this.physics.add.collider(this.hero, wallLayer);
+      // this.physics.add.collider(this.slime, wallLayer);
+      // this.physics.add.collider(this.bat, wallLayer);
+      // this.physics.add.collider(this.rat, wallLayer);
+      // this.physics.add.collider(this.orc, wallLayer);
+      // this.physics.add.collider(this.goblin, wallLayer);
+      // this.physics.add.collider(this.sniper, wallLayer);
+      // this.physics.add.collider(this.spider, wallLayer);
+      // this.physics.add.collider(this.troll, wallLayer);
 
       this.physics.add.collider(this.hero, this.slime, handleHeroEnemyCollision, undefined, this);
       this.physics.add.collider(this.hero, this.bat, handleHeroEnemyCollision, undefined, this);
