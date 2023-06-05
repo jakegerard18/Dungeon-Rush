@@ -6,7 +6,7 @@ export namespace Map {
   var W = 1600;
   var H = 1000;
   var started = false;
-  var images;
+  var rooms;
   var floorplan;
   var floorplanCount;
   var cellQueue;
@@ -16,14 +16,14 @@ export namespace Map {
 
   export function initMap(scene: Phaser.Scene) {
     started = true;
-    images = [];
+    rooms = [];
     floorplan = [];
     for(var i = 0; i <= 100; i++) floorplan[i] = 0;
     floorplanCount = 0;
     cellQueue = [];
     endrooms = [];
     visit(45);
-    for(let i = 0; i < 100; i++) {
+    for(let i = 0; i < 10; i++) {
       if(started){
         if(cellQueue.length > 0)
         {
@@ -72,7 +72,7 @@ export namespace Map {
     for (var i = 0; i < floorplan.length; i++) {
       if (floorplan[i] == 1) {
           var map = check_neighbors(i)
-          img(scene, i, map)
+          addRoom(scene, i, map)
       }
     }
   }
@@ -88,16 +88,18 @@ export namespace Map {
     if (floorplan[cell-1])
         neighbors.push('W');
 
-    let result = neighbors.toString().replace(',','');
-    return result;
+    return neighbors.toString().replace(',','');
   }
 
-  function img(scene, i, name) {
+  function addRoom(scene, i, name) {
     var x = i % 10;
     var y = (i - x) / 10;
-    var img = scene.add.image(W/2 + cellw * (x - 5), H/2 + cellh * (y - 4), name);
-    images.push(img);
-    return img;
+    let room = scene.make.tilemap({ key: name })
+    const tileset = room.addTilesetImage('dungeon_tiles', 'tiles');
+    const floor = room.createLayer('Floor', tileset, W/2 + cellw * (x - 5), H/2 + cellh * (y - 4));
+    const walls = room.createLayer('Walls', tileset, W/2 + cellw * (x - 5), H/2 + cellh * (y - 4));
+    rooms.push(room);
+    return room;
   }
 
 }
