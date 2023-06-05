@@ -7,7 +7,6 @@ export default class Preloader extends Phaser.Scene {
 
     preload() {
         this.load.image('tiles', 'tilemaps/tiles_dungeon_v1.png');
-        this.load.tilemapTiledJSON('n_dungeon', 'dungeons/n_dungeon.json');
         this.load.atlas('hero', 'sprites/hero.png', 'sprites/hero.json');
         this.load.atlas('slime', 'sprites/slime.png', 'sprites/slime.json');
         this.load.atlas('spider', 'sprites/spider.png', 'sprites/spider.json');
@@ -22,8 +21,6 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('heart-full', 'sprites/heart_full.png');
 
         // Dungeons:
-        this.load.image('N', 'dungeons/n_dungeon.png');
-
         // this.load.image('NSEW', 'dungeons/nsew_dungeon.png');
         // this.load.image('NSE', ' dungeons/nes_dungeon.png');
         // this.load.image('NSW', 'dungeons/nws_dungeon.png');
@@ -36,8 +33,25 @@ export default class Preloader extends Phaser.Scene {
         // this.load.image('SW', 'dungeons/sw_dungeon.png');
         // this.load.image('EW', 'dungeons/ew_dungeon.png');
         // this.load.image('S', 'dungeons/s_dungeon.png');
+        // this.load.image('N', 'dungeons/n_dungeon.png');
         // this.load.image('E', 'dungeons/e_dungeon.png');
         // this.load.image('W', 'dungeons/w_dungeon.png');
+
+        this.load.tilemapTiledJSON('NSEW', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('NSE', ' dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('NSW', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('NEW', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('SEW', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('NE', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('NW', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('NS', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('SE', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('SW', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('EW', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('S', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('N', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('E', 'dungeons/n_dungeon.json');
+        this.load.tilemapTiledJSON('W', 'dungeons/n_dungeon.json');
     }
 
     create() {
