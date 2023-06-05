@@ -55,23 +55,17 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-      // Map.initMap(this)
+      Map.initMap(this)
       this.scene.run('ui');
-      this.add.image(500,500,'N')
-      this.hero = new Hero(this, 500, 500);
-      this.slime = new Slime(this, 100, 100);
-      this.bat = new Bat(this, 100, 100);
-      this.rat = new Rat(this, 100, 100);
-      this.orc = new Orc(this, 100, 100);
-      this.goblin = new Goblin(this, 100, 100);
-      this.sniper = new Sniper(this, 100, 100);
-      this.spider = new Spider(this, 100, 100);
-      this.troll = new Troll(this, 100, 100);
-
-    // let dungeon = this.make.tilemap({key: 'N'})
-    // const tileset = dungeon.addTilesetImage('dungeon_tiles', 'tiles');
-    // const floorLayer = dungeon.createLayer('Floor', tileset);
-    // const wallLayer = dungeon.createLayer('Walls', tileset);
+      this.hero = new Hero(this, 900, 600);
+      // this.slime = new Slime(this, 100, 100);
+      // this.bat = new Bat(this, 100, 100);
+      // this.rat = new Rat(this, 100, 100);
+      // this.orc = new Orc(this, 100, 100);
+      // this.goblin = new Goblin(this, 100, 100);
+      // this.sniper = new Sniper(this, 100, 100);
+      // this.spider = new Spider(this, 100, 100);
+      // this.troll = new Troll(this, 100, 100);
 
       this.cameras.main.startFollow(this.hero, true);
 
