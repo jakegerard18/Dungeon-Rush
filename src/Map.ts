@@ -11,7 +11,7 @@ export namespace Map {
   var floorplanCount;
   var cellQueue;
   var endrooms;
-  var maxrooms = 10;
+  var maxrooms = 100;
   var minrooms = 7;
 
   export function initMap(scene: Phaser.Scene) {
