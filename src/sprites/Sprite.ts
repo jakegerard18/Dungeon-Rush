@@ -20,10 +20,9 @@ export class Sprite extends Phaser.Physics.Arcade.Sprite {
 
 	constructor(scene: Phaser.Scene, x: number, y: number, key: string) {
 		super(scene, x, y, key);
-		this.init(scene);
 	}
 
-	init(scene: Phaser.Scene) {
+	render(scene: Phaser.Scene) {
 		this.anims.play(this.animationKeys.Idle);
 		scene.add.existing(this);
 		scene.physics.add.existing(this);
