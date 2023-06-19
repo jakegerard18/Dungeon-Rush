@@ -55,7 +55,7 @@ export default class Game extends Phaser.Scene {
     }
 
     create() {
-      Map.initMap(this)
+      const rooms = Map.initMap(this)
       this.scene.run('ui');
       this.hero = new Hero(this, 900, 600);
       // this.slime = new Slime(this, 100, 100);
