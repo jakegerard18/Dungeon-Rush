@@ -1,97 +1,99 @@
 import Phaser from 'phaser';
 
-export namespace Map {
-  var cellw = 256;
-  var cellh = 256;
-  var W = 1600;
-  var H = 1000;
-  var maxrooms = 100;
-  var minrooms = 10;
-  var rooms;
-  var floorplan;
-  var floorplanCount;
-  var cellQueue;
+export class Map {
+  private scene;
+  private cellw = 256;
+  private cellh = 256;
+  private W = 1600;
+  private H = 1000;
+  private maxrooms = 100;
+  private minrooms = 10;
+  private floorplan;
+  private floorplanCount;
+  private cellQueue;
 
-  export function initMap(scene: Phaser.Scene) {
-    rooms = [];
-    floorplan = [];
-    cellQueue = [];
-    floorplanCount = 0;
-    for(var i = 0; i <= maxrooms; i++) floorplan[i] = 0;
-    visit(45);
-    visitCells(scene);
-    applyDungeonMaps(scene, floorplan)
-    return rooms;
+  constructor(scene: Phaser.Scene) {
+    this.scene = scene;
+	}
+
+  renderMap() {
+    this.floorplan = [];
+    this.cellQueue = [];
+    this.floorplanCount = 0;
+    for(var i = 0; i <= this.maxrooms; i++) this.floorplan[i] = 0;
+    this.visit(45);
+    this.visitCells();
+    this.applyDungeonMaps()
   }
 
-  function visit(i) {
-    var neighbours = ncount(i);
-    if(floorplan[i])
+  visit(i) {
+    let neighbours = this.ncount(i);
+    if(this.floorplan[i])
         return false;
     if (neighbours > 1)
         return false;
-    if (floorplanCount >= maxrooms)
+    if (this.floorplanCount >= this.maxrooms)
         return false;
     if(Math.random() < 0.5 && i != 45)
         return false;
-    cellQueue.push(i);
-    floorplan[i] = 1;
-    floorplanCount += 1;
+    this.cellQueue.push(i);
+    this.floorplan[i] = 1;
+    this.floorplanCount += 1;
     return true;
   }
 
-  function visitCells(scene) {
-    while(cellQueue.length > 0)
+  visitCells() {
+    while(this.cellQueue.length > 0)
     {
-      var cell = cellQueue.shift();
+      var cell = this.cellQueue.shift();
       var x = cell % 10;
       var created = false;
-      if(x > 1) created = created || visit(cell - 1);
-      if(x < 9) created = created || visit(cell + 1);
-      if(cell > 20) created = created || visit(cell - 10);
-      if(cell < 70) created = created || visit(cell + 10);
+      if(x > 1) created = created || this.visit(cell - 1);
+      if(x < 9) created = created || this.visit(cell + 1);
+      if(cell > 20) created = created || this.visit(cell - 10);
+      if(cell < 70) created = created || this.visit(cell + 10);
     }
     // Re-run if we don't reach the min number of rooms
-    if(floorplanCount < minrooms)
-      initMap(scene);
+    if(this.floorplanCount < this.minrooms)
+      this.renderMap();
   }
 
-  function ncount(i) {
-    return floorplan[i-10] + floorplan[i-1] + floorplan[i+1] + floorplan[i+10];
+  ncount(i) {
+    return this.floorplan[i-10] + this.floorplan[i-1] + this.floorplan[i+1] + this.floorplan[i+10];
   }
 
-  function applyDungeonMaps(scene, floorplan) {
-    for (var i = 0; i < floorplan.length; i++) {
-      if (floorplan[i] == 1) {
-          var map = checkNeighbors(i)
-          addRoom(scene, i, map)
+  applyDungeonMaps() {
+    for (var i = 0; i < this.floorplan.length; i++) {
+      if (this.floorplan[i] == 1) {
+          var mapName = this.checkNeighbors(i)
+          this.buildRoom(i, mapName)
       }
     }
   }
 
-  function checkNeighbors(cell) {
+  checkNeighbors(cell) {
     let neighbors: string[] = []
-    if (floorplan[cell-10])
+    if (this.floorplan[cell-10])
         neighbors.push('N');
-    if (floorplan[cell+10])
+    if (this.floorplan[cell+10])
         neighbors.push('S');
-    if (floorplan[cell+1])
+    if (this.floorplan[cell+1])
         neighbors.push('E');
-    if (floorplan[cell-1])
+    if (this.floorplan[cell-1])
         neighbors.push('W');
 
     return neighbors.toString().replace(',','');
   }
 
-  function addRoom(scene, i, name) {
+  buildRoom(i, name) {
     var x = i % 10;
     var y = (i - x) / 10;
-    let room = scene.make.tilemap({ key: name })
+    let room = this.scene.make.tilemap({ key: name })
     const tileset = room.addTilesetImage('dungeon_tiles', 'tiles');
-    room.createLayer('Floor', tileset, W/2 + cellw * (x - 5), H/2 + cellh * (y - 4));
-    room.createLayer('Walls', tileset, W/2 + cellw * (x - 5), H/2 + cellh * (y - 4));
-    rooms.push(room);
-    return room;
+    room.createLayer('Floor', tileset, this.W/2 + this.cellw * (x - 5), this.H/2 + this.cellh * (y - 4));
+    const walls = room.createLayer('Walls', tileset, this.W/2 + this.cellw * (x - 5), this.H/2 + this.cellh * (y - 4));
+    walls.setCollisionByProperty({ collides: true })
+    this.scene.physics.add.collider(this.scene.sprites, walls);
   }
 
 }

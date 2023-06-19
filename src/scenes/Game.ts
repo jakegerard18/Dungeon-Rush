@@ -3,7 +3,7 @@ import { debugDraw } from '../utils/debug';
 import {createAnimations} from '../Animations';
 import { Map } from '../Map';
 import { Keys } from '../Keys';
-import { handleHeroEnemyCollision } from '../Collisions';
+import { setHeroEnemyColliders } from '../Collisions';
 import { Slime } from '../sprites/Slime';
 import { Hero } from '../sprites/Hero';
 import { Bat } from '../sprites/Bat';
@@ -13,84 +13,75 @@ import { Goblin } from '../sprites/Goblin';
 import { Sniper } from '../sprites/Sniper';
 import { Spider } from '../sprites/Spider';
 import { Troll } from '../sprites/Troll';
+import { Enemy } from '../sprites/Enemy';
+import { Sprite } from '../sprites/Sprite';
 
 export default class Game extends Phaser.Scene {
-    private hero: Hero;
-    private slime: Slime;
-    private bat: Bat;
-    private rat: Rat;
-    private orc: Orc;
-    private goblin: Goblin;
-    private sniper: Sniper;
-    private spider: Spider;
-    private troll: Troll;
+  private sprites: Sprite[];
+  private enemies: Enemy[];
+  private map: any;
+  private hero: Hero;
+  private updateCounter = 0;
 
-    private keys;
-    private keyCodes = {
-      up: Phaser.Input.Keyboard.KeyCodes.W,
-      down: Phaser.Input.Keyboard.KeyCodes.S,
-      left: Phaser.Input.Keyboard.KeyCodes.A,
-      right: Phaser.Input.Keyboard.KeyCodes.D,
-      attackUp: Phaser.Input.Keyboard.KeyCodes.UP,
-      attackDown: Phaser.Input.Keyboard.KeyCodes.DOWN,
-      attackLeft: Phaser.Input.Keyboard.KeyCodes.LEFT,
-      attackRight: Phaser.Input.Keyboard.KeyCodes.RIGHT
-    };
+  private keys;
+  private keyCodes = {
+    up: Phaser.Input.Keyboard.KeyCodes.W,
+    down: Phaser.Input.Keyboard.KeyCodes.S,
+    left: Phaser.Input.Keyboard.KeyCodes.A,
+    right: Phaser.Input.Keyboard.KeyCodes.D,
+    attackUp: Phaser.Input.Keyboard.KeyCodes.UP,
+    attackDown: Phaser.Input.Keyboard.KeyCodes.DOWN,
+    attackLeft: Phaser.Input.Keyboard.KeyCodes.LEFT,
+    attackRight: Phaser.Input.Keyboard.KeyCodes.RIGHT
+  };
 
-    constructor() {
-      super('game');
-    }
+  constructor() {
+    super('game');
+  }
 
-    preload() {
-      this.keys = Keys.initKeys(this, this.keyCodes);
-      createAnimations(this, 'hero');
-      createAnimations(this, 'slime');
-      createAnimations(this, 'bat');
-      createAnimations(this, 'rat');
-      createAnimations(this, 'orc');
-      createAnimations(this, 'goblin');
-      createAnimations(this, 'sniper');
-      createAnimations(this, 'spider');
-      createAnimations(this, 'troll');
-    }
+  preload() {
+    this.keys = Keys.initKeys(this, this.keyCodes);
+    createAnimations(this, 'hero');
+    createAnimations(this, 'slime');
+    createAnimations(this, 'bat');
+    createAnimations(this, 'rat');
+    createAnimations(this, 'orc');
+    createAnimations(this, 'goblin');
+    createAnimations(this, 'sniper');
+    createAnimations(this, 'spider');
+    createAnimations(this, 'troll');
+  }
 
-    create() {
-      const rooms = Map.initMap(this)
-      this.scene.run('ui');
-      this.hero = new Hero(this, 900, 600);
-      // this.slime = new Slime(this, 100, 100);
-      // this.bat = new Bat(this, 100, 100);
-      // this.rat = new Rat(this, 100, 100);
-      // this.orc = new Orc(this, 100, 100);
-      // this.goblin = new Goblin(this, 100, 100);
-      // this.sniper = new Sniper(this, 100, 100);
-      // this.spider = new Spider(this, 100, 100);
-      // this.troll = new Troll(this, 100, 100);
+  create() {
+    this.sprites = [];
+    this.enemies = [];
+    this.hero = new Hero(this, 900, 600);
+    this.sprites.push(this.hero);
+    this.enemies.push(new Slime(this, 100, 100));
+    this.enemies.push(new Bat(this, 100, 100));
+    this.enemies.push(new Rat(this, 100, 100));
+    this.enemies.push(new Orc(this, 100, 100));
+    this.enemies.push(new Goblin(this, 100, 100));
+    this.enemies.push(new Sniper(this, 100, 100));
+    this.enemies.push(new Spider(this, 100, 100));
+    this.enemies.push(new Troll(this, 100, 100));
+    this.sprites = this.sprites.concat(this.enemies);
 
-      this.cameras.main.startFollow(this.hero, true);
+    // Render map
+    this.map = new Map(this)
+    this.map.renderMap();
 
-      // wallLayer.setCollisionByProperty({collides: true});
-      // this.physics.add.collider(this.hero, wallLayer);
-      // this.physics.add.collider(this.slime, wallLayer);
-      // this.physics.add.collider(this.bat, wallLayer);
-      // this.physics.add.collider(this.rat, wallLayer);
-      // this.physics.add.collider(this.orc, wallLayer);
-      // this.physics.add.collider(this.goblin, wallLayer);
-      // this.physics.add.collider(this.sniper, wallLayer);
-      // this.physics.add.collider(this.spider, wallLayer);
-      // this.physics.add.collider(this.troll, wallLayer);
+    // Render sprites
+    this.sprites.forEach(sprite => sprite.render(this))
 
-      this.physics.add.collider(this.hero, this.slime, handleHeroEnemyCollision, undefined, this);
-      this.physics.add.collider(this.hero, this.bat, handleHeroEnemyCollision, undefined, this);
-      this.physics.add.collider(this.hero, this.rat, handleHeroEnemyCollision, undefined, this);
-      this.physics.add.collider(this.hero, this.orc, handleHeroEnemyCollision, undefined, this);
-      this.physics.add.collider(this.hero, this.goblin, handleHeroEnemyCollision, undefined, this);
-      this.physics.add.collider(this.hero, this.sniper, handleHeroEnemyCollision, undefined, this);
-      this.physics.add.collider(this.hero, this.spider, handleHeroEnemyCollision, undefined, this);
-      this.physics.add.collider(this.hero, this.troll, handleHeroEnemyCollision, undefined, this);
-    }
+    // Set colliders
+    setHeroEnemyColliders(this, this.hero, this.enemies);
+    this.scene.run('ui');
+    this.cameras.main.startFollow(this.hero, true);
+  }
 
-    update() {
-      this.hero.update(this.keys);
-    }
+  update() {
+    this.hero.update(this.keys);
+  }
+
 }
