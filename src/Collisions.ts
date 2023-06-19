@@ -3,6 +3,12 @@ import { Types } from './Types'
 import { Hero } from './sprites/Hero';
 import { Enemy } from './sprites/Enemy';
 
+export function setHeroEnemyColliders(scene, hero: Hero, enemies: Enemy[]) {
+  enemies.forEach(enemy => {
+    scene.physics.add.collider(hero, enemy, handleHeroEnemyCollision, undefined, scene)
+  })
+}
+
 export function handleHeroEnemyCollision(obj1: Phaser.GameObjects.GameObject, obj2: Phaser.GameObjects.GameObject) {
   let dir;
   const hero = obj1 as Hero;
