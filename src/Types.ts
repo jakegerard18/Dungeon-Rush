@@ -7,7 +7,7 @@ export namespace Types {
     LEFT,
     RIGHT
   }
-  
+
   export enum SpriteState {
     Attacking = 'attacking',
     Vulnerable = 'vulnerable',
