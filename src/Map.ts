@@ -11,6 +11,7 @@ export class Map {
   private floorplan;
   private floorplanCount;
   private cellQueue;
+  private rooms;
 
   constructor(scene: Phaser.Scene) {
     this.scene = scene;
@@ -19,6 +20,7 @@ export class Map {
   renderMap() {
     this.floorplan = [];
     this.cellQueue = [];
+    this.rooms = [];
     this.floorplanCount = 0;
     for(var i = 0; i <= this.maxrooms; i++) this.floorplan[i] = 0;
     this.visit(45);
@@ -39,6 +41,7 @@ export class Map {
     this.cellQueue.push(i);
     this.floorplan[i] = 1;
     this.floorplanCount += 1;
+    this.rooms.push(i);
     return true;
   }
 
@@ -86,14 +89,20 @@ export class Map {
   }
 
   buildRoom(i, name) {
-    var x = i % 10;
-    var y = (i - x) / 10;
+    let x = i % 10;
+    let y = (i - x) / 10;
+    let adjustedX = this.W/2 + this.cellw * (x - 5);
+    let adjustedY = this.H/2 + this.cellh * (y - 4);
     let room = this.scene.make.tilemap({ key: name })
     const tileset = room.addTilesetImage('dungeon_tiles', 'tiles');
-    room.createLayer('Floor', tileset, this.W/2 + this.cellw * (x - 5), this.H/2 + this.cellh * (y - 4));
-    const walls = room.createLayer('Walls', tileset, this.W/2 + this.cellw * (x - 5), this.H/2 + this.cellh * (y - 4));
+    room.createLayer('Floor', tileset, adjustedX, adjustedY);
+    const walls = room.createLayer('Walls', tileset, adjustedX, adjustedY);
     walls.setCollisionByProperty({ collides: true })
     this.scene.physics.add.collider(this.scene.sprites, walls);
+  }
+
+  getRooms() {
+    return this.rooms;
   }
 
 }
