@@ -21,7 +21,13 @@ export default class Game extends Phaser.Scene {
   private enemies: Enemy[];
   private map: any;
   private hero: Hero;
-  private updateCounter = 0;
+  private rooms: any[];
+
+  // TODO: Add to types
+  private cellw = 256;
+  private cellh = 256;
+  private W = 1600;
+  private H = 1000;
 
   private keys;
   private keyCodes = {
@@ -57,25 +63,19 @@ export default class Game extends Phaser.Scene {
     this.enemies = [];
     this.hero = new Hero(this, 900, 600);
     this.sprites.push(this.hero);
-    this.enemies.push(new Slime(this, 100, 100));
-    this.enemies.push(new Bat(this, 100, 100));
-    this.enemies.push(new Rat(this, 100, 100));
-    this.enemies.push(new Orc(this, 100, 100));
-    this.enemies.push(new Goblin(this, 100, 100));
-    this.enemies.push(new Sniper(this, 100, 100));
-    this.enemies.push(new Spider(this, 100, 100));
-    this.enemies.push(new Troll(this, 100, 100));
-    this.sprites = this.sprites.concat(this.enemies);
 
     // Render map
     this.map = new Map(this)
     this.map.renderMap();
+    this.rooms = this.map.getRooms()
 
     // Render sprites
+    this.hero.render(this);
+    this.generateEnemies()
     this.sprites.forEach(sprite => sprite.render(this))
 
     // Set colliders
-    setHeroEnemyColliders(this, this.hero, this.enemies);
+    setHeroEnemyColliders(this, this.hero, this.sprites);
     this.scene.run('ui');
     this.cameras.main.startFollow(this.hero, true);
   }
@@ -84,4 +84,21 @@ export default class Game extends Phaser.Scene {
     this.hero.update(this.keys);
   }
 
+  generateEnemies() {
+    while(this.rooms.length) {
+      let i = this.rooms.shift();
+      let x = i % 10;
+      let y = (i - x) / 10;
+      let adjustedX = this.W/2 + this.cellw * (x - 5) + 50;
+      let adjustedY = this.H/2 + this.cellh * (y - 4) + 50;
+      this.sprites.push(new Slime(this, adjustedX, adjustedY));
+      this.sprites.push(new Bat(this, adjustedX, adjustedY));
+      this.sprites.push(new Rat(this, adjustedX, adjustedY));
+      this.sprites.push(new Orc(this, adjustedX, adjustedY));
+      this.sprites.push(new Goblin(this, adjustedX, adjustedY));
+      this.sprites.push(new Sniper(this, adjustedX, adjustedY));
+      this.sprites.push(new Spider(this, adjustedX, adjustedY));
+      this.sprites.push(new Troll(this, adjustedX, adjustedY));
+    }
+  }
 }
