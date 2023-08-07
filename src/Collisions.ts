@@ -2,8 +2,9 @@ import Phaser from 'phaser'
 import { Types } from './Types'
 import { Hero } from './sprites/Hero';
 import { Enemy } from './sprites/Enemy';
+import { Sprite } from './sprites/Sprite';
 
-export function setHeroEnemyColliders(scene, hero: Hero, enemies: Enemy[]) {
+export function setHeroEnemyColliders(scene, hero: Hero, enemies: Sprite[]) {
   enemies.forEach(enemy => {
     scene.physics.add.collider(hero, enemy, handleHeroEnemyCollision, undefined, scene)
   })
