@@ -22,12 +22,16 @@ export default class Game extends Phaser.Scene {
   private map: any;
   private hero: Hero;
   private rooms: any[];
+  private spritePool: any[];
 
   // TODO: Add to types
   private cellw = 256;
   private cellh = 256;
   private W = 1600;
   private H = 1000;
+  private minOffset = 25;
+  private maxOffset = 225;
+  private maxEnemiesPerRoom = 100;
 
   private keys;
   private keyCodes = {
@@ -47,13 +51,13 @@ export default class Game extends Phaser.Scene {
 
   preload() {
     this.keys = Keys.initKeys(this, this.keyCodes);
+    this.spritePool = [ Slime, Bat, Rat, Orc, Goblin, Spider, Troll ];
     createAnimations(this, 'hero');
     createAnimations(this, 'slime');
     createAnimations(this, 'bat');
     createAnimations(this, 'rat');
     createAnimations(this, 'orc');
     createAnimations(this, 'goblin');
-    createAnimations(this, 'sniper');
     createAnimations(this, 'spider');
     createAnimations(this, 'troll');
   }
@@ -87,18 +91,25 @@ export default class Game extends Phaser.Scene {
   generateEnemies() {
     while(this.rooms.length) {
       let i = this.rooms.shift();
-      let x = i % 10;
-      let y = (i - x) / 10;
-      let adjustedX = this.W/2 + this.cellw * (x - 5) + 50;
-      let adjustedY = this.H/2 + this.cellh * (y - 4) + 50;
-      this.sprites.push(new Slime(this, adjustedX, adjustedY));
-      this.sprites.push(new Bat(this, adjustedX, adjustedY));
-      this.sprites.push(new Rat(this, adjustedX, adjustedY));
-      this.sprites.push(new Orc(this, adjustedX, adjustedY));
-      this.sprites.push(new Goblin(this, adjustedX, adjustedY));
-      this.sprites.push(new Sniper(this, adjustedX, adjustedY));
-      this.sprites.push(new Spider(this, adjustedX, adjustedY));
-      this.sprites.push(new Troll(this, adjustedX, adjustedY));
+      for (let j = 0; j < Math.floor(Math.random() * this.maxEnemiesPerRoom); j++) {
+        this.sprites.push(this.generateSprite(i));
+      }
     }
+  }
+
+  generateOffset(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  generateSprite(i) {
+    const rand = Math.floor(Math.random() * this.spritePool.length)
+    const sprite = this.spritePool[rand]
+    let x = i % 10;
+    let y = (i - x) / 10;
+    let randOffsetX = this.generateOffset(this.minOffset, this.maxOffset);
+    let randOffsetY = this.generateOffset(this.minOffset, this.maxOffset);
+    let adjustedX = this.W/2 + this.cellw * (x - 5) + randOffsetX;
+    let adjustedY = this.H/2 + this.cellh * (y - 4) + randOffsetY;
+    return new sprite(this, adjustedX, adjustedY)
   }
 }
