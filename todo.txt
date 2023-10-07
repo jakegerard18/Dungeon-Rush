@@ -1,5 +1,0 @@
-1. Figure out why we get lag at a minroom size of ~20
-2. Spawn enemies within dungeons
-3. Implement deaths for hero and enemies
-4. Add logic to render a new dungeon when all enemies are cleared
-5. Implement timer mechanic
