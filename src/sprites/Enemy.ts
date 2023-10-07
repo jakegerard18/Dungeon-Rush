@@ -6,7 +6,9 @@ export class Enemy extends Sprite {
   public BODY_SIZE_ADJUSTMENT = 0.28;
   public MAX_MOVEMENT_TIME = 1000;
   public velocity = 100;
-  public movementTime = 0;
+
+  // Set movementTime to max initially so enemies aren't idle when spawned
+  public movementTime = this.MAX_MOVEMENT_TIME;
   public direction = Types.Direction.RIGHT;
   public moveEvent: Phaser.Time.TimerEvent;
 
