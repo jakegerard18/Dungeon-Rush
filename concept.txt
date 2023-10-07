@@ -1,0 +1,3 @@
+- Clear as many dungeons as possible before the timer runs out.
+- Each dungeon has a magnitude more enemies.
+- Score is based on number of dungeons cleared, enemies killed per second, life bonus, etc.
