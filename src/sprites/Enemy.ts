@@ -47,8 +47,6 @@ export class Enemy extends Sprite {
   handleDamage(dir: Phaser.Math.Vector2) {
     if(this.healthState === Types.SpriteState.Damaged) {
       return
-    } else if (this.health < 0) {
-      this.healthState = Types.SpriteState.Dead;
     } else {
       this.anims.play(this.animationKeys.DamagedDown);
       this.healthState = Types.SpriteState.Damaged;
@@ -57,9 +55,14 @@ export class Enemy extends Sprite {
       this.damageTime = 0;
       --this.health;
     }
+
+    if (this.health < 0) {
+      this.healthState = Types.SpriteState.Dead;
+    }
   }
 
   preUpdate(t: number, dt: number): void {
+    if (!this) { return; }
     super.preUpdate(t, dt);
     this.movementTime += dt;
     this.direction = this.randomDirection(this.direction);
@@ -95,9 +98,14 @@ export class Enemy extends Sprite {
           break;
       }
       this.movementTime = 0;
-    } else if (this.healthState === Types.SpriteState.Damaged) {
+    } else if (this.healthState === Types.SpriteState.Damaged || this.healthState === Types.SpriteState.Dead) {
       this.damageTime += dt;
-      if (this.damageTime >= 250) {
+    }
+
+    if (this.damageTime >= 250) {
+      if (this.healthState === Types.SpriteState.Dead) {
+        this.destroy();
+      } else {
         this.healthState = Types.SpriteState.Idle;
         this.setTint(0xffffff)
         this.damageTime = 0;
@@ -106,7 +114,6 @@ export class Enemy extends Sprite {
   }
 
   destroy(fromScene?: boolean) {
-    this.moveEvent.destroy();
     super.destroy(fromScene);
   }
 }
