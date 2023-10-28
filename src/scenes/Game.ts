@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import { debugDraw } from '../utils/debug';
 import {createAnimations} from '../Animations';
 import { Map } from '../Map';
 import { Keys } from '../Keys';
@@ -10,7 +9,6 @@ import { Bat } from '../sprites/Bat';
 import { Rat } from '../sprites/Rat';
 import { Orc } from '../sprites/Orc';
 import { Goblin } from '../sprites/Goblin';
-import { Sniper } from '../sprites/Sniper';
 import { Spider } from '../sprites/Spider';
 import { Troll } from '../sprites/Troll';
 import { Enemy } from '../sprites/Enemy';
@@ -32,7 +30,7 @@ export default class Game extends Phaser.Scene {
   private H = 1000;
   private minOffset = 25;
   private maxOffset = 225;
-  private maxEnemiesPerRoom = 100;
+  private maxEnemiesPerRoom = 10;
 
   private keys;
   private keyCodes = {
@@ -48,6 +46,13 @@ export default class Game extends Phaser.Scene {
 
   constructor() {
     super('game');
+  }
+
+  init(data) {
+    if (data.maxEnemiesPerRoom) {
+      this.maxEnemiesPerRoom *= data.maxEnemiesPerRoom
+      console.log(this.maxEnemiesPerRoom);
+    }
   }
 
   preload() {
@@ -89,6 +94,12 @@ export default class Game extends Phaser.Scene {
     this.hero.update(this.keys);
     if (this.hero.healthState === Types.SpriteState.Dead) {
       this.scene.run('game-over');
+    }
+
+    // If the Hero sprite is the only one left, all enemies have been killed, so generate a new dungeon
+    let allSprites = this.children.list.filter(x => x instanceof Phaser.GameObjects.Sprite);
+    if (allSprites.length === 1) {
+      this.scene.start('game', { maxEnemiesPerRoom: 2 });
     }
   }
 
