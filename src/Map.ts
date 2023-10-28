@@ -97,6 +97,8 @@ export class Map {
     const tileset = room.addTilesetImage('dungeon_tiles', 'tiles');
     room.createLayer('Floor', tileset, adjustedX, adjustedY);
     const walls = room.createLayer('Walls', tileset, adjustedX, adjustedY);
+    console.log(room);
+    console.log(walls);
     walls.setCollisionByProperty({ collides: true })
     this.scene.physics.add.collider(this.scene.sprites, walls);
   }
