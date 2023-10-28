@@ -6,6 +6,7 @@ export class Enemy extends Sprite {
   public BODY_SIZE_ADJUSTMENT = 0.28;
   public MAX_MOVEMENT_TIME = 1000;
   public velocity = 100;
+  public health = 1;
 
   // Set movementTime to max initially so enemies aren't idle when spawned
   public movementTime = this.MAX_MOVEMENT_TIME;
@@ -56,7 +57,7 @@ export class Enemy extends Sprite {
       --this.health;
     }
 
-    if (this.health < 0) {
+    if (this.health <= 0) {
       this.healthState = Types.SpriteState.Dead;
     }
   }

@@ -16,6 +16,9 @@ export class Troll extends Enemy {
     DamagedDown: 'troll-damage-down'
   }
 
+  // Trolls get 2 health because they're tough AF
+  public health = 2;
+
   constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y, 'troll');
   }
