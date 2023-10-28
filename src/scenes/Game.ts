@@ -15,6 +15,7 @@ import { Spider } from '../sprites/Spider';
 import { Troll } from '../sprites/Troll';
 import { Enemy } from '../sprites/Enemy';
 import { Sprite } from '../sprites/Sprite';
+import { Types } from '../Types';
 
 export default class Game extends Phaser.Scene {
   private sprites: Sprite[];
@@ -86,6 +87,9 @@ export default class Game extends Phaser.Scene {
 
   update() {
     this.hero.update(this.keys);
+    if (this.hero.healthState === Types.SpriteState.Dead) {
+      this.scene.run('game-over');
+    }
   }
 
   generateEnemies() {

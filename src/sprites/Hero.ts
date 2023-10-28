@@ -104,7 +104,7 @@ export class Hero extends Sprite {
     if(this.healthState === Types.SpriteState.Damaged) {
       return;
     }
-    if (this.health < 0) {
+    if (this.health === 0) {
       this.healthState = Types.SpriteState.Dead;
     } else {
       this.setVelocity(dir.x, dir.y);
@@ -129,8 +129,8 @@ export class Hero extends Sprite {
       }
       break;
     case Types.SpriteState.Dead:
-      // Play death animation
-      break;
+      this.setTint(0xff0000);
+      break
     }
   }
 

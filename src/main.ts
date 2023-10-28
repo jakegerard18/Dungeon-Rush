@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import Preloader from './scenes/Preloader';
 import Game from './scenes/Game';
 import UI from './scenes/UI';
+import GameOver from './scenes/GameOver';
 
 
 export default new Phaser.Game({
@@ -13,5 +14,5 @@ export default new Phaser.Game({
             debug: false
         }
     },
-    scene: [Preloader, Game, UI]
+    scene: [Preloader, Game, UI, GameOver]
 });
