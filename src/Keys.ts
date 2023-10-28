@@ -8,7 +8,6 @@ export namespace Keys {
         Flipped = -1
     }
 
-
     export function initKeys(scene: Phaser.Scene, keys: Types.PlayerKeyCodes) {
         let initializedKeys = scene.input.keyboard.addKeys(keys)
         return initializedKeys;
