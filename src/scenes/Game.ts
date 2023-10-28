@@ -30,7 +30,8 @@ export default class Game extends Phaser.Scene {
   private H = 1000;
   private minOffset = 25;
   private maxOffset = 225;
-  private maxEnemiesPerRoom = 10;
+  private maxEnemiesPerRoom;
+  private dungeonsCleared;
 
   private keys;
   private keyCodes = {
@@ -49,10 +50,16 @@ export default class Game extends Phaser.Scene {
   }
 
   init(data) {
-    if (data.maxEnemiesPerRoom) {
-      this.maxEnemiesPerRoom *= data.maxEnemiesPerRoom
-      console.log(this.maxEnemiesPerRoom);
+    if (data.maxEnemiesPerRoom && data.dungeonsCleared) {
+      this.maxEnemiesPerRoom = data.maxEnemiesPerRoom
+      this.dungeonsCleared = data.dungeonsCleared;
+      console.log('SETTING');
+    } else {
+      this.maxEnemiesPerRoom = 2;
+      this.dungeonsCleared = 0;
     }
+    console.log('DUNGEONS CLEARED:', this.dungeonsCleared);
+    console.log('MAX ENEMIES:', this.maxEnemiesPerRoom);
   }
 
   preload() {
@@ -93,13 +100,14 @@ export default class Game extends Phaser.Scene {
   update() {
     this.hero.update(this.keys);
     if (this.hero.healthState === Types.SpriteState.Dead) {
-      this.scene.run('game-over');
+      this.scene.run('game-over', { dungeonsCleared: this.dungeonsCleared });
     }
 
     // If the Hero sprite is the only one left, all enemies have been killed, so generate a new dungeon
     let allSprites = this.children.list.filter(x => x instanceof Phaser.GameObjects.Sprite);
     if (allSprites.length === 1) {
-      this.scene.start('game', { maxEnemiesPerRoom: 2 });
+      console.log('HERE')
+      this.scene.start('game', { maxEnemiesPerRoom: this.maxEnemiesPerRoom * 2, dungeonsCleared: this.dungeonsCleared += 1 });
     }
   }
 

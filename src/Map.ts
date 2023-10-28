@@ -6,8 +6,8 @@ export class Map {
   private cellh = 256;
   private W = 1600;
   private H = 1000;
-  private maxrooms = 100;
-  private minrooms = 10;
+  private maxrooms = 3;
+  private minrooms = 1;
   private floorplan;
   private floorplanCount;
   private cellQueue;
@@ -85,7 +85,7 @@ export class Map {
     if (this.floorplan[cell-1])
         neighbors.push('W');
 
-    return neighbors.toString().replace(',','');
+    return neighbors.toString().replaceAll(',','');
   }
 
   buildRoom(i, name) {
