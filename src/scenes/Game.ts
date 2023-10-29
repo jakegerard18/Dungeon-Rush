@@ -15,6 +15,13 @@ import { Enemy } from '../sprites/Enemy';
 import { Sprite } from '../sprites/Sprite';
 import { Types } from '../Types';
 
+export namespace GLOBALS {
+  export var dungeonsCleared = 0;
+  export function handleCountdownFinished() {
+    this.scene.start('game-over', { dungeonsCleared: dungeonsCleared });
+  }
+}
+
 export default class Game extends Phaser.Scene {
   private sprites: Sprite[];
   private enemies: Enemy[];
@@ -32,8 +39,6 @@ export default class Game extends Phaser.Scene {
   private maxOffset = 225;
   private maxEnemiesPerRoom;
   private numRooms;
-  private dungeonsCleared;
-
   private keys;
   private keyCodes = {
     up: Phaser.Input.Keyboard.KeyCodes.W,
@@ -54,11 +59,11 @@ export default class Game extends Phaser.Scene {
     if (data.maxEnemiesPerRoom === undefined && data.numRooms === undefined && data.dungeonsCleared === undefined) {
       this.maxEnemiesPerRoom = 2;
       this.numRooms = 3;
-      this.dungeonsCleared = 0;
+      GLOBALS.dungeonsCleared = 0;
     } else {
       this.maxEnemiesPerRoom = data.maxEnemiesPerRoom;
       this.numRooms = data.numRooms;
-      this.dungeonsCleared = data.dungeonsCleared;
+      GLOBALS.dungeonsCleared = data.dungeonsCleared;
     }
   }
 
@@ -100,13 +105,13 @@ export default class Game extends Phaser.Scene {
   update() {
     this.hero.update(this.keys);
     if (this.hero.healthState === Types.SpriteState.Dead) {
-      this.scene.run('game-over', { dungeonsCleared: this.dungeonsCleared });
+      this.scene.run('game-over', { dungeonsCleared: GLOBALS.dungeonsCleared });
     }
 
     // If the Hero sprite is the only one left, all enemies have been killed, so generate a new dungeon
     let allSprites = this.children.list.filter(x => x instanceof Phaser.GameObjects.Sprite);
     if (allSprites.length === 1) {
-      this.scene.start('game', { maxEnemiesPerRoom: this.maxEnemiesPerRoom * 2, numRooms: ++this.numRooms, dungeonsCleared: ++this.dungeonsCleared });
+      this.scene.start('game', { maxEnemiesPerRoom: this.maxEnemiesPerRoom * 2, numRooms: ++this.numRooms, dungeonsCleared: ++GLOBALS.dungeonsCleared });
     }
   }
 

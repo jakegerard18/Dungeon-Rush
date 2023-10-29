@@ -4,7 +4,7 @@ import Game from './scenes/Game';
 import UI from './scenes/UI';
 import GameOver from './scenes/GameOver';
 import StartScreen from './scenes/StartScreen';
-
+import Timer from './scenes/Timer';
 
 export default new Phaser.Game({
     type: Phaser.AUTO,
@@ -15,5 +15,5 @@ export default new Phaser.Game({
             debug: false
         }
     },
-    scene: [Preloader, StartScreen, Game, UI, GameOver]
+    scene: [Preloader, StartScreen, Game, UI, Timer, GameOver]
 });
