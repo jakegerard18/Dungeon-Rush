@@ -6,8 +6,7 @@ export class Map {
   private cellh = 256;
   private W = 1600;
   private H = 1000;
-  private maxrooms = 3;
-  private minrooms = 1;
+  private numRooms;
   private floorplan;
   private floorplanCount;
   private cellQueue;
@@ -17,12 +16,13 @@ export class Map {
     this.scene = scene;
 	}
 
-  renderMap() {
+  renderMap(numRooms) {
+    this.numRooms = numRooms;
     this.floorplan = [];
     this.cellQueue = [];
     this.rooms = [];
     this.floorplanCount = 0;
-    for(var i = 0; i <= this.maxrooms; i++) this.floorplan[i] = 0;
+    for(var i = 0; i <= this.numRooms; i++) this.floorplan[i] = 0;
     this.visit(45);
     this.visitCells();
     this.applyDungeonMaps()
@@ -34,7 +34,7 @@ export class Map {
         return false;
     if (neighbours > 1)
         return false;
-    if (this.floorplanCount >= this.maxrooms)
+    if (this.floorplanCount >= this.numRooms)
         return false;
     if(Math.random() < 0.5 && i != 45)
         return false;
@@ -56,9 +56,9 @@ export class Map {
       if(cell > 20) created = created || this.visit(cell - 10);
       if(cell < 70) created = created || this.visit(cell + 10);
     }
-    // Re-run if we don't reach the min number of rooms
-    if(this.floorplanCount < this.minrooms)
-      this.renderMap();
+    // Re-run if we don't reach the number of rooms
+    if(this.floorplanCount < this.numRooms)
+      this.renderMap(this.numRooms);
   }
 
   ncount(i) {
