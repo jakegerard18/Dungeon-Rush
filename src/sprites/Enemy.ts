@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import { Types } from '../Types';
 import { Sprite } from './Sprite';
+import { sceneEvents } from '../events/EventCenter';
 
 export class Enemy extends Sprite {
   public BODY_SIZE_ADJUSTMENT = 0.28;
@@ -105,6 +106,7 @@ export class Enemy extends Sprite {
 
     if (this.damageTime >= 250) {
       if (this.healthState === Types.SpriteState.Dead) {
+        sceneEvents.emit('increase-timer', 5000);
         this.destroy();
       } else {
         this.healthState = Types.SpriteState.Idle;

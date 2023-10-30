@@ -16,10 +16,8 @@ import { Sprite } from '../sprites/Sprite';
 import { Types } from '../Types';
 
 export namespace GLOBALS {
+  export var timerEvent;
   export var dungeonsCleared = 0;
-  export function handleCountdownFinished() {
-    this.scene.start('game-over', { dungeonsCleared: dungeonsCleared });
-  }
 }
 
 export default class Game extends Phaser.Scene {

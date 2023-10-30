@@ -1,20 +1,17 @@
 import Phaser from "phaser";
+import { GLOBALS } from "./Game";
+import { sceneEvents } from "../events/EventCenter";
 
 export default class Timer extends Phaser.Scene {
   public scene: Phaser.Scene;
   public label: Phaser.GameObjects.Text;
   public timerEvent: Phaser.Time.TimerEvent;
   public duration = 20000;
+  public additionalTime = 0;
   public finishedCallback;
 
   constructor() {
       super('timer');
-  }
-
-  init(data) {
-    if (data.callback) {
-      this.finishedCallback = data.callback;
-    }
   }
 
   create() {
@@ -24,10 +21,13 @@ export default class Timer extends Phaser.Scene {
       delay: this.duration,
       callback: () => {
         this.stop();
-        if (this.finishedCallback) {
-          this.finishedCallback();
-        }
+        this.handleCountdownFinished()
       }
+    })
+
+    sceneEvents.on('increase-timer', this.handleIncreaseTimer, this);
+    this.events.on(Phaser.Scenes.Events.SHUTDOWN, () => {
+      sceneEvents.off('increase-timer', this.handleIncreaseTimer, this);
     })
   }
 
@@ -41,10 +41,23 @@ export default class Timer extends Phaser.Scene {
     if (!this.timerEvent || this.duration <= 0) {
       return;
     }
-    const elapsed = this.timerEvent.getElapsed();
-    const remaining = this.duration - elapsed;
+    const remaining = this.timerEvent.getRemaining();
     const seconds = remaining / 1000;
-
     this.label.text = seconds.toFixed(2)
   }
+
+  handleIncreaseTimer(milliseconds) {
+    this.timerEvent = this.timerEvent.reset({
+      delay: this.timerEvent.getRemaining() + milliseconds,
+      callback: () => {
+        this.stop();
+        this.handleCountdownFinished();
+      }
+    });
+  }
+
+  handleCountdownFinished() {
+    this.scene.start('game-over', { dungeonsCleared: GLOBALS.dungeonsCleared });
+  }
+
 }

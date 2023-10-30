@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-import { GLOBALS } from "./Game";
 
 export default class GameOver extends Phaser.Scene {
     constructor() {
@@ -10,8 +9,9 @@ export default class GameOver extends Phaser.Scene {
       this.input.keyboard.addKeys(Phaser.Input.Keyboard.KeyCodes.SPACE);
       this.input.keyboard.on('keydown-SPACE', () => {
         this.scene.start('game');
-        this.scene.run('timer', { callback: GLOBALS.handleCountdownFinished });
+        this.scene.start('timer');
       }, this);
+
       this.add.text(this.cameras.main.centerX - 150, this.cameras.main.centerY - 150, "DUNGEON RUSH", { fontSize: '32px', fill: '#AAFF00' });
       this.add.text(this.cameras.main.centerX - 380, this.cameras.main.centerY - 50, "Clear as many dungeons as you can", { fontSize: '32px', fill: '#AAFF00' });
       this.add.text(this.cameras.main.centerX - 380, this.cameras.main.centerY, "before the timer runs out!", { fontSize: '32px', fill: '#AAFF00' });
