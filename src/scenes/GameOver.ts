@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { sceneEvents } from "../events/EventCenter";
 
 export default class GameOver extends Phaser.Scene {
     constructor() {
@@ -15,6 +16,7 @@ export default class GameOver extends Phaser.Scene {
     }
 
     create() {
+      sceneEvents.emit('kill-hero');
       this.input.keyboard.addKeys(this.keys);
       this.input.keyboard.on('keydown-SPACE', () => this.scene.start('game', { maxEnemiesPerRoom: 2, numRooms: 3, dungeonsCleared: 0 }), this);
       this.input.keyboard.on('keydown-SPACE', () => this.scene.run('timer'));

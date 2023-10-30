@@ -14,6 +14,7 @@ import { Troll } from '../sprites/Troll';
 import { Enemy } from '../sprites/Enemy';
 import { Sprite } from '../sprites/Sprite';
 import { Types } from '../Types';
+import { sceneEvents } from '../events/EventCenter';
 
 export namespace GLOBALS {
   export var timerEvent;
@@ -98,6 +99,8 @@ export default class Game extends Phaser.Scene {
     setHeroEnemyColliders(this, this.hero, this.sprites);
     this.scene.run('ui');
     this.cameras.main.startFollow(this.hero, true);
+
+    sceneEvents.on('kill-hero', this.killHero, this)
   }
 
   update() {
@@ -136,5 +139,9 @@ export default class Game extends Phaser.Scene {
     let adjustedX = this.W/2 + this.cellw * (x - 5) + randOffsetX;
     let adjustedY = this.H/2 + this.cellh * (y - 4) + randOffsetY;
     return new sprite(this, adjustedX, adjustedY)
+  }
+
+  killHero() {
+    this.hero.healthState = Types.SpriteState.Dead;
   }
 }

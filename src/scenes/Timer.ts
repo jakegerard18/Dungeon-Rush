@@ -6,7 +6,7 @@ export default class Timer extends Phaser.Scene {
   public scene: Phaser.Scene;
   public label: Phaser.GameObjects.Text;
   public timerEvent: Phaser.Time.TimerEvent;
-  public duration = 20000;
+  public duration = 30000;
   public additionalTime = 0;
   public finishedCallback;
 
