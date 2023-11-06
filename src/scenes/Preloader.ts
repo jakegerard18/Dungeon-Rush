@@ -36,9 +36,25 @@ export default class Preloader extends Phaser.Scene {
         this.load.tilemapTiledJSON('N', 'dungeons/n_dungeon.json');
         this.load.tilemapTiledJSON('E', 'dungeons/e_dungeon.json');
         this.load.tilemapTiledJSON('W', 'dungeons/w_dungeon.json');
+
+        // Music
+        this.load.audio('music', ['music/Battle with Beasts.ogg']);
+        
     }
 
     create() {
+        this.music = this.sound.add('music');
+        const musicConfig = {
+          mute: false,
+          volume: 1,
+          rate: 1,
+          detune: 0,
+          seek: 0,
+          loop: true,
+          delay: 0
+        };
+
+        this.music.play(musicConfig);
         this.scene.start('start-screen');
     }
 }

@@ -1,6 +1,6 @@
 Credits:
 
-Many thanks to the talented pixel artists below for uploading their great work for free use!
+Many thanks to the talented artists below for uploading their great work for free use!
 
 Tiles, Hero, and Slimes:
 Pita (silverdeluxe.tumblr.com,
@@ -8,3 +8,6 @@ twitter.com/@pita_akm)
 
 Heart Meter:
 0x72 (https://itch.io/profile/0x72)
+
+Music:
+bit-by-bit-sound (https://bit-by-bit-sound.itch.io/)
