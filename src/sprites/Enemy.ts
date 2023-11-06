@@ -106,7 +106,7 @@ export class Enemy extends Sprite {
 
     if (this.damageTime >= 250) {
       if (this.healthState === Types.SpriteState.Dead) {
-        sceneEvents.emit('increase-timer', 2000);
+        sceneEvents.emit('increase-timer', 3000);
         this.destroy();
       } else {
         this.healthState = Types.SpriteState.Idle;

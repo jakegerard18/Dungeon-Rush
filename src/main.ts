@@ -4,6 +4,8 @@ import Game from './scenes/Game';
 import UI from './scenes/UI';
 import GameOver from './scenes/GameOver';
 import StartScreen from './scenes/StartScreen';
+import Instructions from './scenes/Instructions';
+import Credits from './scenes/Credits';
 import Timer from './scenes/Timer';
 
 export default new Phaser.Game({
@@ -15,5 +17,5 @@ export default new Phaser.Game({
             debug: false
         }
     },
-    scene: [Preloader, StartScreen, Game, UI, Timer, GameOver]
+    scene: [Preloader, StartScreen, Instructions, Credits, Game, UI, Timer, GameOver]
 });
