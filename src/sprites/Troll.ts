@@ -67,7 +67,7 @@ export class Troll extends Enemy {
 
     if (this.damageTime >= 250) {
       if (this.healthState === Types.SpriteState.Dead) {
-        sceneEvents.emit('increase-timer', 10000);
+        sceneEvents.emit('increase-timer', 5000);
         this.destroy();
       } else {
         this.healthState = Types.SpriteState.Idle;
